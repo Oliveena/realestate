@@ -1,3 +1,16 @@
+YYYY-MM-DD NAME
+1. Done/ not done since last scrum:
+- 
+-
+
+2. To do until next Scrum:
+-
+-
+
+3. Need assistance / figure things out
+- 
+- 
+
 2025-03-14 Trang
 1. Done / not done since last scrum:
 - took screenshots of real estate websites
@@ -37,3 +50,44 @@
 
 ======================================================================================================
 
+2025-03-18 Ana
+1. Done/ not done since last scrum:
+- UML Done
+- Share repo with teams
+- Currently watching video5
+
+2. To do until next Scrum:
+- phpMyAdmin database
+- read up monolog
+
+3. Need assistance / figure things out
+- finish proposal before noon today
+- 
+
+
+2025-03-18 Dang
+1. Done/ not done since last scrum:
+- Currently watching day07 and reading tutorials
+- Finished Trello 
+
+2. To do until next Scrum:
+- Progress with videos, learn libraries/frameworks
+-
+
+3. Need assistance / figure things out
+- 
+- 
+
+
+2025-03-18 Trang
+1. Done/ not done since last scrum:
+- screenshots for mockups
+-
+
+2. To do until next Scrum:
+- start on HTML/CSS/Bootstrap
+- watch video day07
+
+3. Need assistance / figure things out
+- finish proposal before noon today
+- 
