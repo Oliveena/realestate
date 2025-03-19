@@ -98,6 +98,7 @@ YYYY-MM-DD NAME
 2025-03-19 Ana
 1. Done/ not done since last scrum:
 - videos watched until day 09
+- found like 5 tutorials on distance calculation between coordinates (including the 20 lines of code for Google Maps API)
 - submitted the proposal
 
 2. To do until next Scrum:
