@@ -91,3 +91,49 @@ YYYY-MM-DD NAME
 3. Need assistance / figure things out
 - finish proposal before noon today
 - 
+
+======================================================================================================
+
+
+2025-03-19 Ana
+1. Done/ not done since last scrum:
+- videos watched until day 09
+- submitted the proposal
+
+2. To do until next Scrum:
+- start on Monolog code for realestate
+- fix XAMPP 
+
+3. Need assistance / figure things out
+- advice fixing XAMPP connection to MySQL 
+- finish videos 
+
+
+2025-03-19 Dang
+1. Done/ not done since last scrum:
+- day07 watched video and read tutorials
+- helped finishing the database for proposal
+- submitted the proposal
+
+2. To do until next Scrum:
+- connect database to cloud 
+- keep watching videos
+
+3. Need assistance / figure things out
+- xampp?
+-
+
+
+2025-03-19 
+1. Done/ not done since last scrum:
+- did hom page +login + register
+- submitted the proposal
+
+2. To do until next Scrum:
+- finish video 7 + 8 today
+- work on properties
+
+3. Need assistance / figure things out
+- push database to Azure
+
+
