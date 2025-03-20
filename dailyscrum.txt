@@ -138,3 +138,47 @@ YYYY-MM-DD NAME
 - push database to Azure
 
 
+======================================================================================================
+
+
+2025-03-20 Ana
+1. Done/ not done since last scrum:
+- reinstalled XAMPP, reconnected all the DBs
+- installed Filezilla
+- videos watched until day 13
+
+2. To do until next Scrum:
+- upload project to fsd13.ca
+- finish videos except for cloud prep
+- start Laravel tutorial videos 
+- make plan for personal portfolio update/upload
+
+3. Need assistance / figure things out
+- Filezilla 
+
+2025-03-20 Dang
+1. Done/ not done since last scrum:
+- reinstalled XAMPP, 
+- installed Filezilla
+- videos watched until day 13
+- started watching Laravel tutorials
+
+2. To do until next Scrum:
+- day07 video review
+- connect filezilla to subdomain
+- recreate a previous database for testing
+
+3. Need assistance / figure things out
+- 
+
+2025-03-20 - Trang
+1. Done/ not done since last scrum:
+- finished video07+08
+
+2. To do until next Scrum:
+- finish 13 + 15
+- start on laravel tutorial hell
+- finish up home page + login + register HTML/CSS/Bootstrap
+
+3. Need assistance / figure things out
+- connect local to cloud hosting
