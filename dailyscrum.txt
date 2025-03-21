@@ -182,3 +182,48 @@ YYYY-MM-DD NAME
 
 3. Need assistance / figure things out
 - connect local to cloud hosting
+
+
+======================================================================================================
+
+
+2025-03-21 Ana
+1. Done/ not done since last scrum:
+- conected Filezilla to subdomain
+- videos watched until day 18 (cloud prep left for later)
+- Laravel tutorail video #3
+- personal portfolio update/upload in progress
+
+2. To do until next Scrum:
+- finish Laravel tutorial 
+- start Google Maps API coding
+
+3. Need assistance / figure things out
+- thoughts and prayers 
+
+
+
+2025-03-21 Dang
+1. Done/ not done since last scrum:
+- watched Laravel videos 1-9
+- day07 reviewed
+
+2. To do until next Scrum:
+- finish laravel tutorials
+
+3. Need assistance / figure things out
+- how to use mysql as database in laravel
+
+2025-03-21 Trang
+1. Done/ not done since last scrum:
+- finished video13+15
+- finished Laravel video 0-5
+
+2. To do until next Scrum:
+- finish Laravel vids
+- push home page + login + register HTML/CSS/Bootstrap
+
+3. Need assistance / figure things out
+- connect local to cloud hosting
+
+
