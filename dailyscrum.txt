@@ -226,4 +226,4 @@ YYYY-MM-DD NAME
 3. Need assistance / figure things out
 - connect local to cloud hosting
 
-
+10 am Sunday, next Scrum
