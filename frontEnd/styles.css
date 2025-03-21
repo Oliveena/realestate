@@ -1,0 +1,131 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+body.home{
+    background-image: url('image/1920.jpeg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    font-weight: bold;
+    margin-right: 20px; 
+}
+
+.hero-section {
+    background-image: url('image/1920.jpeg');
+    background-size: cover;
+    background-position: center;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color:#fff;
+}
+
+.hero-section p {
+    padding-top: -100px;
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+.nav-pills .nav-link {
+    color: #333;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.navbar-nav .btn-danger {
+    color: #fff;
+    font-weight: bold;
+}
+
+.navbar-nav .dropdown-toggle::after {
+    vertical-align: middle;
+}
+
+.search-box {
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.latest-properties {
+    background-image: url("image/Arbres_clair.jpeg");
+}
+
+footer {
+    background-color: #0c2340;
+    padding: 40px 0;
+}
+
+footer h2, footer h5 {
+    margin-bottom: 1rem;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer .fab {
+    font-size: 1.2rem;
+}
+
+body.sign{
+    background-image: url('image/1921.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+.form-container {
+    background-color: rgba(255, 255, 255);
+    border-radius: 10px;
+    padding: 40px;
+    max-width: 500px;
+    margin: auto;
+}
+
+.form-container h1 {
+    color: #0c2340;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.custom-form label {
+    font-weight: bold;
+}
+
+.custom-form input {
+    margin-bottom: 20px;
+}
+
+.btn-submit {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 20px;
+}
+
