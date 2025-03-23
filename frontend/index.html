@@ -6,6 +6,11 @@
     <title>RE/MAX - Find Your Future Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
+
+<!--Google Maps API-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIYrxxQCyWzaeLr1iRNoZOhzAaXc7725Y&callback=initMap&libraries=geometry&v=weekly" async defer></script>
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -98,19 +103,20 @@
         </div>
       </section>
 
-      <!-- TODO: MAP API SECTION -->
+      <!-- MAP API SECTION -->
+
+      <!--MAP WILL DISPLAY ALL LISTED PROPERTIES, 1 PIN PER PROPERTY, AGGLUTINATE IF >5 PROPERTIES-->
+      <!--if session active (buyer or realtor) display a) user location from postal code in profile b) properties nearby c) distance between both e.g. 5.6km from you: -->
+      
       <section class="latest-properties py-5">
         <div class="container">
           <div class="bg-white p-4 rounded shadow">
-            <!-- FIXME: iframe as placeholder for now -->
 
 <!--SOURCE: https://www.geodatasource.com/resources/tutorials/how-to-calculate-the-distance-between-2-locations-using-php/ -->
 <!--SOURCE: https://developers.google.com/maps/documentation/geocoding/overview-->
 
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIYrxxQCyWzaeLr1iRNoZOhzAaXc7725Y&callback=initMap&libraries=&v=weekly" async defer></script>
-
-
+<!--displaying maps-->
+<div id="map" style="height: 450px; width: 100%;"></div>
 
 <?php
 function distance($lat1, $lon1, $lat2, $lon2, $unit) {
@@ -140,65 +146,7 @@ echo distance(32.9697, -96.80322, 29.46786, -98.53506, "K") . " Kilometers<br>";
 echo distance(32.9697, -96.80322, 29.46786, -98.53506, "N") . " Nautical Miles<br>";
 ?>
 
-<script>
-  let map, userLocationMarker, propertyMarker;
-
-  function initMap() {
-    // Define the map's initial center location (for example, Montreal)
-    const initialLocation = { lat: 45.5088, lng: -73.5673 };
-
-    // Initialize the map
-    map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 12,
-      center: initialLocation,
-    });
-
-    // User's location (use geolocation or set manually)
-    const userLocation = { lat: 45.5088, lng: -73.5673 }; // Example
-
-    // Property location (replace with dynamic data)
-    const propertyLocation = { lat: 45.5050, lng: -73.5630 }; // Example
-
-    // Place the user's location marker
-    userLocationMarker = new google.maps.Marker({
-      position: userLocation,
-      map: map,
-      title: "Your Location",
-    });
-
-    // Place the property marker
-    propertyMarker = new google.maps.Marker({
-      position: propertyLocation,
-      map: map,
-      title: "Property Location",
-    });
-
-    // Calculate the distance when the map loads
-    calculateDistance(userLocation, propertyLocation);
-  }
-
-  function calculateDistance(loc1, loc2) {
-    // Use Google Maps API's Geometry library to calculate the distance
-    const distance = google.maps.geometry.spherical.computeDistanceBetween(
-      new google.maps.LatLng(loc1.lat, loc1.lng),
-      new google.maps.LatLng(loc2.lat, loc2.lng)
-    );
-
-    // Display the distance in meters
-    document.getElementById("distance").innerText = `Distance: ${(distance / 1000).toFixed(2)} km`;
-  }
-</script>
-
-
-
-
-
-<!--displaying maps-->
-<div id="map" style="height: 450px; width: 100%;"></div>
-<!--displaying distance-->
-<div id="distance" style="margin-top: 20px;"></div>
-
-
+<!--end of maps-->
 
             <div class="row align-items-center mb-4">
               <div class="col-md-6">
@@ -340,4 +288,125 @@ echo distance(32.9697, -96.80322, 29.46786, -98.53506, "N") . " Nautical Miles<b
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
   </body>
+
+  <script>
+// TODO: insert actual properties from DB
+const properties = [
+  { id: 1, lat: 45.5051, lng: -73.5615, address: "1234 Rue Sainte-Catherine O, Montreal" },
+  { id: 2, lat: 45.5098, lng: -73.5730, address: "5678 Boulevard de Maisonneuve O, Montreal" },
+  { id: 3, lat: 45.5155, lng: -73.5649, address: "9101 Avenue du Parc, Montreal" }
+];
+
+//testing user postal code
+const userPostalCode = 'H2X 1Y4';
+
+// get user postal code
+//const userPostalCode = '<?php echo isset($_SESSION["postal_code"]) ? $_SESSION["postal_code"] : "H2X 1Y4"; ?>'; // Example postal code
+
+let map;
+
+function initMap() {
+  // Montreal is the default location
+  const initialLocation = { lat: 45.5088, lng: -73.5673 };
+
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 12,
+    center: initialLocation,
+  });
+
+  // if session is active, display the user's location
+  if (userPostalCode) {
+    getLocationFromPostalCode(userPostalCode, (userLat, userLng) => {
+      const userLocation = { lat: userLat, lng: userLng };
+
+      // set user location marker on map
+      new google.maps.Marker({
+        position: userLocation,
+        map: map,
+        title: "Your Location",
+      });
+
+      // add property markers and calculate distances
+      properties.forEach(property => {
+        const propertyLocation = { lat: property.lat, lng: property.lng };
+
+        // mark each property
+        new google.maps.Marker({
+          position: propertyLocation,
+          map: map,
+          title: property.address,
+        });
+
+        // calculate distance
+        const distance = google.maps.geometry.spherical.computeDistanceBetween(
+          new google.maps.LatLng(userLocation),
+          new google.maps.LatLng(propertyLocation)
+        );
+
+        const distanceInKm = (distance / 1000).toFixed(2);
+        document.getElementById("distance").innerHTML += `
+          <p>Distance from your location to ${property.address}: ${distanceInKm} km</p>
+        `;
+      });
+    });
+  } else {
+    // if no session is active, only display the property markers
+    properties.forEach(property => {
+      const propertyLocation = { lat: property.lat, lng: property.lng };
+
+      // mark each property
+      new google.maps.Marker({
+        position: propertyLocation,
+        map: map,
+        title: property.address,
+      });
+    });
+  }
+}
+
+// using Geocoding API for lat/long coordinates
+function getLocationFromPostalCode(postalCode, callback) {
+  const geocoder = new google.maps.Geocoder();
+  geocoder.geocode({ address: postalCode }, (results, status) => {
+    if (status === 'OK') {
+      const userLocation = results[0].geometry.location;
+      callback(userLocation.lat(), userLocation.lng());
+    } else {
+      console.error('Geocode was not successful: ' + status);
+    }
+  });
+}
+
+// Inside initMap(), we are looping through the properties
+properties.forEach(property => {
+  const propertyLocation = { lat: property.lat, lng: property.lng };
+
+  // mark each property
+  const propertyMarker = new google.maps.Marker({
+    position: propertyLocation,
+    map: map,
+    title: property.address,
+  });
+
+  // Create an InfoWindow with basic information
+  const infoWindowContent = `
+    <div>
+      <h3>${property.address}</h3>
+      <p>Property Type: Residential</p>
+      <p>Price: $500,000</p>
+    </div>
+  `;
+  
+  const infoWindow = new google.maps.InfoWindow({
+    content: infoWindowContent,
+  });
+
+  // Add a click event listener to the marker
+  propertyMarker.addListener("click", () => {
+    infoWindow.open(map, propertyMarker);
+  });
+});
+
+</script>
+</body>
 </html>
