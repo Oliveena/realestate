@@ -227,3 +227,42 @@ YYYY-MM-DD NAME
 - connect local to cloud hosting
 
 10 am Sunday, next Scrum
+
+======================================================================================================
+
+2025-03-23 Ana
+1. Done/ not done since last scrum:
+- Laravel tutorail video #7 (got stuck)
+- personal portfolio update/upload in progress
+- started Google Maps API coding
+
+2. To do until next Scrum:
+- finish Laravel tutorial 
+- finish Google Maps API 
+- get started on backend 
+
+3. Need assistance / figure things out
+- Laravel tutorial 
+
+2025-03-23 Dang
+1. Done/ not done since last scrum:
+- watched Laravel videos 10-17
+2. To do until next Scrum:
+- finish laravel tutorials
+
+3. Need assistance / figure things out
+- how to use mysql as database in laravel
+
+
+2025-03-23 Trang
+1. Done/ not done since last scrum:
+- basic HTML/CSS/Bootstrap
+
+2. To do until next Scrum:
+- add js to frontend
+- finish Laravel vids
+
+3. Need assistance / figure things out
+- connect local to cloud hosting
+
+======================================================================================================

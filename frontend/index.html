@@ -103,9 +103,103 @@
         <div class="container">
           <div class="bg-white p-4 rounded shadow">
             <!-- FIXME: iframe as placeholder for now -->
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.2635658908883!2d-73.56747368444!3d45.50884937910131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91a4498ebc3ad%3A0x27de5e1d7cf9f4c7!2sRE%2FMAX%20Qu%C3%A9bec%20Inc.!5e0!3m2!1sen!2sca!4v1623345678901!5m2!1sen!2sca"
-              width="100%" height="450"></iframe>
+
+<!--SOURCE: https://www.geodatasource.com/resources/tutorials/how-to-calculate-the-distance-between-2-locations-using-php/ -->
+<!--SOURCE: https://developers.google.com/maps/documentation/geocoding/overview-->
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIYrxxQCyWzaeLr1iRNoZOhzAaXc7725Y&callback=initMap&libraries=&v=weekly" async defer></script>
+
+
+
+<?php
+function distance($lat1, $lon1, $lat2, $lon2, $unit) {
+  if (($lat1 == $lat2) && ($lon1 == $lon2)) {
+    return 0;
+  }
+  else {
+    $theta = $lon1 - $lon2;
+    $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+    $dist = acos($dist);
+    $dist = rad2deg($dist);
+    $miles = $dist * 60 * 1.1515;
+    $unit = strtoupper($unit);
+
+    if ($unit == "K") {
+      return ($miles * 1.609344);
+    } else if ($unit == "N") {
+      return ($miles * 0.8684);
+    } else {
+      return $miles;
+    }
+  }
+}
+
+echo distance(32.9697, -96.80322, 29.46786, -98.53506, "M") . " Miles<br>";
+echo distance(32.9697, -96.80322, 29.46786, -98.53506, "K") . " Kilometers<br>";
+echo distance(32.9697, -96.80322, 29.46786, -98.53506, "N") . " Nautical Miles<br>";
+?>
+
+<script>
+  let map, userLocationMarker, propertyMarker;
+
+  function initMap() {
+    // Define the map's initial center location (for example, Montreal)
+    const initialLocation = { lat: 45.5088, lng: -73.5673 };
+
+    // Initialize the map
+    map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 12,
+      center: initialLocation,
+    });
+
+    // User's location (use geolocation or set manually)
+    const userLocation = { lat: 45.5088, lng: -73.5673 }; // Example
+
+    // Property location (replace with dynamic data)
+    const propertyLocation = { lat: 45.5050, lng: -73.5630 }; // Example
+
+    // Place the user's location marker
+    userLocationMarker = new google.maps.Marker({
+      position: userLocation,
+      map: map,
+      title: "Your Location",
+    });
+
+    // Place the property marker
+    propertyMarker = new google.maps.Marker({
+      position: propertyLocation,
+      map: map,
+      title: "Property Location",
+    });
+
+    // Calculate the distance when the map loads
+    calculateDistance(userLocation, propertyLocation);
+  }
+
+  function calculateDistance(loc1, loc2) {
+    // Use Google Maps API's Geometry library to calculate the distance
+    const distance = google.maps.geometry.spherical.computeDistanceBetween(
+      new google.maps.LatLng(loc1.lat, loc1.lng),
+      new google.maps.LatLng(loc2.lat, loc2.lng)
+    );
+
+    // Display the distance in meters
+    document.getElementById("distance").innerText = `Distance: ${(distance / 1000).toFixed(2)} km`;
+  }
+</script>
+
+
+
+
+
+<!--displaying maps-->
+<div id="map" style="height: 450px; width: 100%;"></div>
+<!--displaying distance-->
+<div id="distance" style="margin-top: 20px;"></div>
+
+
+
             <div class="row align-items-center mb-4">
               <div class="col-md-6">
                 <h2 class="mb-0">
