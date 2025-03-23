@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties - RE/MAX</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"><img src="image/logo.png" alt="RE/MAX Logo" height="50"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Properties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Brokers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <button class="btn btn-danger dropdown-toggle nav-link p-2" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                            My Re/Max
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="login.html">Log in</a></li>
+                            <li><a class="dropdown-item" href="register.html">Register</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">FR</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search and Filter Section -->
+    <div class="container-fluid py-4">
+        <div class="row">
+            <!-- Filter Sidebar -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Criteria</h5>
+                        <form>
+                            <!-- For Sale/Rent Filter -->
+                            <div class="mb-4">
+                                <label class="form-label">Transaction Type</label>
+                                <div class="btn-group w-100">
+                                    <input type="radio" class="btn-check" name="transaction" id="forSale" checked>
+                                    <label class="btn btn-outline-danger" for="forSale">For sale</label>
+                                    <input type="radio" class="btn-check" name="transaction" id="forRent">
+                                    <label class="btn btn-outline-danger" for="forRent">For rent</label>
+                                </div>
+                            </div>
+
+                            <!-- Price Range -->
+                            <div class="mb-4">
+                                <label class="form-label">Price Range</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" placeholder="Min">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" placeholder="Max">
+                                </div>
+                            </div>
+
+                            <!-- Property Type -->
+                            <div class="mb-4">
+                                <label class="form-label">Property Type</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="residential">
+                                    <label class="form-check-label" for="residential">Residential</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="farm">
+                                    <label class="form-check-label" for="farm">Farm / Country Property</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="multiplex">
+                                    <label class="form-check-label" for="multiplex">Multiplex</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="commercial">
+                                    <label class="form-check-label" for="commercial">Commercial / Industrial</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="land">
+                                    <label class="form-check-label" for="land">Land</label>
+                                </div>
+                            </div>
+
+                            <!-- Property Details -->
+                            <div class="mb-4">
+                                <label class="form-label">Property Details</label>
+                                <select class="form-select mb-3">
+                                    <option selected>Number of bedrooms</option>
+                                    <option>1+</option>
+                                    <option>2+</option>
+                                    <option>3+</option>
+                                    <option>4+</option>
+                                </select>
+                                <select class="form-select">
+                                    <option selected>Number of bathrooms</option>
+                                    <option>1+</option>
+                                    <option>2+</option>
+                                    <option>3+</option>
+                                    <option>4+</option>
+                                </select>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-secondary" type="reset">Reset</button>
+                                <button class="btn btn-danger" type="submit">Apply</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property Listings -->
+            <div class="col-md-9">
+                <!-- Search Bar -->
+                <div class="input-group mb-4">
+                    <input type="text" class="form-control" placeholder="Search by region, city, neighborhood, street, ULS">
+                    <button class="btn btn-danger" type="button">Find</button>
+                </div>
+
+                <!-- Property Cards -->
+                <div class="row g-4">
+                    <!-- Property Card 1 -->
+                    <div class="col-md-3">
+                        <div class="card h-100">
+                            <div class="position-relative">
+                                <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
+                                <img src="image/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
+                                <button class="btn position-absolute top-0 end-0 m-2 text-white">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title">$499,000</h5>
+                                    <p class="card-text">Duplex</p>
+                                    <p class="card-text text-muted">1999 Av. Drouin, Québec (Beauport)</p>
+                                </div>
+                                <div class="d-flex justify-content-between text-muted border-top pt-2">
+                                    <span><i class="fas fa-bed"></i> 2</span>
+                                    <span><i class="fas fa-bath"></i> 1</span>
+                                    <span><i class="fas fa-ruler-combined"></i> 1,045 ft²</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 2 -->
+                    <div class="col-md-3">
+                        <div class="card h-100">
+                            <div class="position-relative">
+                                <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
+                                <img src="image/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
+                                <button class="btn position-absolute top-0 end-0 m-2 text-white">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title">$614,924 +GST/QST</h5>
+                                    <p class="card-text">Two-storey house</p>
+                                    <p class="card-text text-muted">27 Ch. du Graphite, L'Ange-Gardien</p>
+                                </div>
+                                <div class="d-flex justify-content-between text-muted border-top pt-2">
+                                    <span><i class="fas fa-bed"></i> 3</span>
+                                    <span><i class="fas fa-bath"></i> 2</span>
+                                    <span><i class="fas fa-ruler-combined"></i> 1,794 ft²</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 3 -->
+                    <div class="col-md-3">
+                        <div class="card h-100">
+                            <div class="position-relative">
+                                <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
+                                <img src="image/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
+                                <button class="btn position-absolute top-0 end-0 m-2 text-white">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title">$799,000</h5>
+                                    <p class="card-text">Apartment - Condominium</p>
+                                    <p class="card-text text-muted">2335 Rue des Équinoxes app. 414, Montréal</p>
+                                </div>
+                                <div class="d-flex justify-content-between text-muted border-top pt-2">
+                                    <span><i class="fas fa-bed"></i> 2</span>
+                                    <span><i class="fas fa-bath"></i> 2</span>
+                                    <span><i class="fas fa-ruler-combined"></i> 105.50 m²</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 4 -->
+                    <div class="col-md-3">
+                        <div class="card h-100">
+                            <div class="position-relative">
+                                <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
+                                <img src="image/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
+                                <button class="btn position-absolute top-0 end-0 m-2 text-white">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title">$499,000</h5>
+                                    <p class="card-text">Duplex</p>
+                                    <p class="card-text text-muted">1999 Av. Drouin, Québec (Beauport)</p>
+                                </div>
+                                <div class="d-flex justify-content-between text-muted border-top pt-2">
+                                    <span><i class="fas fa-bed"></i> 2</span>
+                                    <span><i class="fas fa-bath"></i> 1</span>
+                                    <span><i class="fas fa-ruler-combined"></i> 1,045 ft²</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 5 -->
+                    <div class="col-md-3">
+                        <div class="card h-100">
+                            <div class="position-relative">
+                                <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
+                                <img src="image/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
+                                <button class="btn position-absolute top-0 end-0 m-2 text-white">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title">$614,924 +GST/QST</h5>
+                                    <p class="card-text">Two-storey house</p>
+                                    <p class="card-text text-muted">27 Ch. du Graphite, L'Ange-Gardien</p>
+                                </div>
+                                <div class="d-flex justify-content-between text-muted border-top pt-2">
+                                    <span><i class="fas fa-bed"></i> 3</span>
+                                    <span><i class="fas fa-bath"></i> 2</span>
+                                    <span><i class="fas fa-ruler-combined"></i> 1,794 ft²</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 6 -->
+                    <div class="col-md-3">
+                        <div class="card h-100">
+                            <div class="position-relative">
+                                <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
+                                <img src="image/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
+                                <button class="btn position-absolute top-0 end-0 m-2 text-white">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title">$799,000</h5>
+                                    <p class="card-text">Apartment - Condominium</p>
+                                    <p class="card-text text-muted">2335 Rue des Équinoxes app. 414, Montréal</p>
+                                </div>
+                                <div class="d-flex justify-content-between text-muted border-top pt-2">
+                                    <span><i class="fas fa-bed"></i> 2</span>
+                                    <span><i class="fas fa-bath"></i> 2</span>
+                                    <span><i class="fas fa-ruler-combined"></i> 105.50 m²</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 7 -->
+                    <div class="col-md-3">
+                        <div class="card h-100">
+                            <div class="position-relative">
+                                <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
+                                <img src="image/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
+                                <button class="btn position-absolute top-0 end-0 m-2 text-white">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title">$799,000</h5>
+                                    <p class="card-text">Apartment - Condominium</p>
+                                    <p class="card-text text-muted">2335 Rue des Équinoxes app. 414, Montréal</p>
+                                </div>
+                                <div class="d-flex justify-content-between text-muted border-top pt-2">
+                                    <span><i class="fas fa-bed"></i> 2</span>
+                                    <span><i class="fas fa-bath"></i> 2</span>
+                                    <span><i class="fas fa-ruler-combined"></i> 105.50 m²</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 8 -->
+                    <div class="col-md-3">
+                        <div class="card h-100">
+                            <div class="position-relative">
+                                <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
+                                <img src="image/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
+                                <button class="btn position-absolute top-0 end-0 m-2 text-white">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title">$799,000</h5>
+                                    <p class="card-text">Apartment - Condominium</p>
+                                    <p class="card-text text-muted">2335 Rue des Équinoxes app. 414, Montréal</p>
+                                </div>
+                                <div class="d-flex justify-content-between text-muted border-top pt-2">
+                                    <span><i class="fas fa-bed"></i> 2</span>
+                                    <span><i class="fas fa-bath"></i> 2</span>
+                                    <span><i class="fas fa-ruler-combined"></i> 105.50 m²</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <!-- Pagination -->
+                <nav class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Newsletter</h2>
+                    <p>Sign up to receive blog posts related to the real estate world.</p>
+                    <form class="newsletter-form">
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Email address">
+                            <button class="btn btn-outline-light" type="submit">→</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Quick Links</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="index.html" class="text-danger">Home</a></li>
+                                <li><a href="#" class="text-white">Properties</a></li>
+                                <li><a href="#" class="text-white">La Collection RE/MAX</a></li>
+                                <li><a href="#" class="text-white">RE/MAX Commercial</a></li>
+                                <li><a href="#" class="text-white">Brokers</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>&nbsp;</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-white">Regions</a></li>
+                                <li><a href="#" class="text-white">Blog</a></li>
+                                <li><a href="#" class="text-white">Programs</a></li>
+                                <li><a href="#" class="text-white">Careers</a></li>
+                                <li><a href="#" class="text-white">Contact us</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>&nbsp;</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-white">Mon RE/MAX</a></li>
+                                <li><a href="#" class="text-white">RE/MAX Global</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center">
+                    <a href="#" class="text-white me-3">Privacy policy</a>
+                    <a href="#" class="text-white me-3">Terms of use</a>
+                    <a href="#" class="text-white">Management of cookie consents</a>
+                </div>
+                <div class="col-md-6 text-center">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>
