@@ -266,3 +266,44 @@ YYYY-MM-DD NAME
 - connect local to cloud hosting
 
 ======================================================================================================
+
+2025-03-24 Ana
+1. Done/ not done since last scrum:
+- Laravel tutorail video #7 (got stuck)
+- Google Maps API works for displaying tags, needs sessions for testing 
+- installed WAMP
+- set up PHPMyAdmin with admin
+- watched first tutorial on Laravel
+- watched tutorial on Herd
+
+2. To do until next Scrum:
+- get unstuck with Laravel tutorial
+- solve hosting issues 
+- test Google Maps API 
+
+3. Need assistance / figure things out
+- hosting issues
+
+2025-03-24 Dang
+1. Done/ not done since last scrum:
+- set up phpMyAdmin on Herd, not using xampp
+- replicate tutorials laravel at video 9
+2. To do until next Scrum:
+- connect shared database to laravel project
+- start CRUD for realtors
+
+3. Need assistance / figure things out
+- connecting the database 
+
+2025-03-24 Trang
+1. Done/ not done since last scrum:
+- setup Laravel + Herd +PHPMyAdmin
+- watched videos about Routing and Controllers
+
+2. To do until next Scrum:
+- edit frontend with js to be backend friendly
+- continue tuts videos with vies and web layout
+- start working on User can read/search properties
+
+3. Need assistance / figure things out
+- connect local web + db to cloud hosting
