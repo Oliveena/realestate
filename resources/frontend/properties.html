@@ -13,35 +13,6 @@
     <nav class="navbar navbar-expand-lg bg-white">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html"><img src="image/logo.png" alt="RE/MAX Logo" height="50"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Properties</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Brokers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <button class="btn btn-danger dropdown-toggle nav-link p-2" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                            My Re/Max
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="login.html">Log in</a></li>
-                            <li><a class="dropdown-item" href="register.html">Register</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">FR</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </nav>
 
     <!-- Search and Filter Section -->
@@ -53,15 +24,17 @@
                     <div class="card-body">
                         <h5 class="card-title mb-4">Criteria</h5>
                         <form>
-                            <!-- For Sale/Rent Filter -->
+                            <!-- Location -->
                             <div class="mb-4">
-                                <label class="form-label">Transaction Type</label>
-                                <div class="btn-group w-100">
-                                    <input type="radio" class="btn-check" name="transaction" id="forSale" checked>
-                                    <label class="btn btn-outline-danger" for="forSale">For sale</label>
-                                    <input type="radio" class="btn-check" name="transaction" id="forRent">
-                                    <label class="btn btn-outline-danger" for="forRent">For rent</label>
-                                </div>
+                                <label class="form-label">Location</label>
+                                <select class="form-select mb-3">
+                                    <option selected>Regions</option>
+                                    <option>Montreal</option>
+                                    <option>Laval</option>
+                                    <option>Longueuil</option>
+                                    <option>Brossard</option>
+                                    <option>Boucherville</option>
+                                </select>
                             </div>
 
                             <!-- Price Range -->
@@ -132,12 +105,6 @@
 
             <!-- Property Listings -->
             <div class="col-md-9">
-                <!-- Search Bar -->
-                <div class="input-group mb-4">
-                    <input type="text" class="form-control" placeholder="Search by region, city, neighborhood, street, ULS">
-                    <button class="btn btn-danger" type="button">Find</button>
-                </div>
-
                 <!-- Property Cards -->
                 <div class="row g-4">
                     <!-- Property Card 1 -->
@@ -359,70 +326,8 @@
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="text-white py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h2>Newsletter</h2>
-                    <p>Sign up to receive blog posts related to the real estate world.</p>
-                    <form class="newsletter-form">
-                        <div class="input-group mb-3">
-                            <input type="email" class="form-control" placeholder="Email address">
-                            <button class="btn btn-outline-light" type="submit">→</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h5>Quick Links</h5>
-                            <ul class="list-unstyled">
-                                <li><a href="index.html" class="text-danger">Home</a></li>
-                                <li><a href="#" class="text-white">Properties</a></li>
-                                <li><a href="#" class="text-white">La Collection RE/MAX</a></li>
-                                <li><a href="#" class="text-white">RE/MAX Commercial</a></li>
-                                <li><a href="#" class="text-white">Brokers</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <h5>&nbsp;</h5>
-                            <ul class="list-unstyled">
-                                <li><a href="#" class="text-white">Regions</a></li>
-                                <li><a href="#" class="text-white">Blog</a></li>
-                                <li><a href="#" class="text-white">Programs</a></li>
-                                <li><a href="#" class="text-white">Careers</a></li>
-                                <li><a href="#" class="text-white">Contact us</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <h5>&nbsp;</h5>
-                            <ul class="list-unstyled">
-                                <li><a href="#" class="text-white">Mon RE/MAX</a></li>
-                                <li><a href="#" class="text-white">RE/MAX Global</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr class="my-4">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center">
-                    <a href="#" class="text-white me-3">Privacy policy</a>
-                    <a href="#" class="text-white me-3">Terms of use</a>
-                    <a href="#" class="text-white">Management of cookie consents</a>
-                </div>
-                <div class="col-md-6 text-center">
-                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

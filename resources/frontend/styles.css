@@ -1,317 +1,242 @@
+/* Global Styles */
+:root {
+  --primary-color: #0c2340;
+  --secondary-color: #dc3545;
+  --text-color: #333;
+  --light-gray: #f8f9fa;
+  --border-color: #dee2e6;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
 }
 
-body.home{
-    background-image: url('image/1920.jpeg');
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
+/* Navigation */
+.navbar {
+  padding: 1rem 0;
 }
 
-.navbar-nav .nav-link {
-    color: #fff;
-    font-weight: bold;
-    margin-right: 20px; 
+.navbar-dark {
+  background-color: var(--primary-color);
 }
 
+/* Hero Section */
 .hero-section {
-    background-image: url('image/1920.jpeg');
-    background-size: cover;
-    background-position: center;
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
+  background-image: url('image/1920.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: calc(100vh - 90px);
+  display: flex;
+  align-items: center;
+  color: white;
+  position: relative;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-section h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    color:#fff;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
-.hero-section p {
-    padding-top: -100px;
-    font-size: 1.5rem;
-    color: #fff;
-    font-weight: bold;
-}
-
-.nav-pills .nav-link {
-    color: #333;
-}
-
-.nav-pills .nav-link.active {
-    background-color: #dc3545;
-    color: #fff;
-}
-
-.navbar-nav .btn-danger {
-    color: #fff;
-    font-weight: bold;
-}
-
-.navbar-nav .dropdown-toggle::after {
-    vertical-align: middle;
-}
-
-.search-box {
-    max-width: 1000px;
-    margin: 0 auto;
-    border-radius: 10px;
-    padding: 20px;
-}
-
-.latest-properties {
-    background-image: url("image/Arbres_clair.jpeg");
-}
-
-footer {
-    background-color: #0c2340;
-    padding: 40px 0;
-    flex-shrink: 0;
-}
-
-footer h2, footer h5 {
-    margin-bottom: 1rem;
-}
-
-footer a {
-    color: #fff;
-    text-decoration: none;
-}
-
-footer .fab {
-    font-size: 1.2rem;
-}
-
-body.sign{
-    background-image: url('image/1921.jpg');
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
+/* Login & Register Pages */
+.sign {
+  background-image: url('image/1921.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
 }
 
 .form-container {
-    background-color: rgba(255, 255, 255);
-    border-radius: 10px;
-    padding: 40px;
-    max-width: 500px;
-    margin: auto;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
 }
 
-.form-container h1 {
-    color: #0c2340;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-.custom-form label {
-    font-weight: bold;
-}
-
-.custom-form input {
-    margin-bottom: 20px;
+.custom-form .form-control {
+  padding: 0.75rem;
+  border-radius: 5px;
 }
 
 .btn-submit {
-    background-color: #dc3545;
-    border-color: #dc3545;
-    width: 100%;
+  width: 100%;
+  padding: 0.75rem;
+  font-weight: 600;
 }
 
-.btn-submit:hover {
-    background-color: #c82333;
-    border-color: #bd2130;
-}
-
-.forgot-password {
-    text-align: center;
-    margin-top: 20px;
-}
-
-/* Profile page styles */
-.list-group-item.active {
-    background-color: #0c2340;
-    border-color: #0c2340;
-}
-
-.list-group-item {
-    border: none;
-    padding: 12px 20px;
-    margin-bottom: 5px;
-    border-radius: 5px !important;
-}
-
-.list-group-item:hover:not(.active) {
-    background-color: #f8f9fa;
-}
-
+/* Property Cards */
 .card {
-    border: none;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+  transition: transform 0.3s ease;
+  margin-bottom: 1.5rem;
 }
 
-.card-title {
-    color: #0c2340;
-    font-weight: bold;
+.card:hover {
+  transform: translateY(-5px);
 }
 
-.form-label {
-    font-weight: 500;
-    color: #495057;
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
 }
 
-.form-control, .form-select {
-    border-radius: 5px;
-    border: 1px solid #ced4da;
-    padding: 10px 15px;
-}
-
-.form-control:focus, .form-select:focus {
-    border-color: #0c2340;
-    box-shadow: 0 0 0 0.2rem rgba(12, 35, 64, 0.25);
-}
-
-.btn-primary {
-    background-color: #0c2340;
-    border-color: #0c2340;
-    padding: 8px 20px;
-}
-
-.btn-primary:hover {
-    background-color: #0a1c33;
-    border-color: #0a1c33;
-}
-
-.btn-light {
-    background-color: #f8f9fa;
-    border-color: #ced4da;
-    padding: 8px 20px;
-}
-
-.text-danger a {
-    text-decoration: none;
-}
-
-.dropdown-toggle::after {
-    display: none;
-}
-
-.navbar {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Main content wrapper */
-.container-fluid {
-    flex: 1 0 auto;
-}
-
-/* Profile page specific styles */
-body:not(.home):not(.sign) {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.profile-wrapper {
-    flex: 1 0 auto;
-    display: flex;
-    flex-direction: column;
-}
-
-footer {
-    background-color: #0c2340;
-    padding: 40px 0;
-    flex-shrink: 0;
-    margin-top: auto;
-}
-
-.article-header {
-    position: relative;
-    background-color: #f8f9fa;
-    padding: 3rem 0;
-}
-.article-image {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-}
-.article-content {
-    font-size: 1.1rem;
-    line-height: 1.8;
-}
-.article-content h2 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    color: #0c2340;
-}
-.article-meta {
-    color: #6c757d;
-    margin-bottom: 2rem;
-}
-.share-buttons {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid #dee2e6;
-}
-.share-buttons a {
-    margin-right: 1rem;
-    color: #6c757d;
-    text-decoration: none;
-}
-.share-buttons a:hover {
-    color: #0c2340;
-}
-
+/* Property Details Page */
 .property-header {
-    background-color: #f8f9fa;
-    padding: 2rem 0;
+  background-color: var(--light-gray);
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border-color);
 }
+
 .property-price {
-    font-size: 2.5rem;
-    color: #0c2340;
-    font-weight: bold;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--secondary-color);
 }
-.property-features {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 1.5rem;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-}
-.feature-icon {
-    font-size: 1.5rem;
-    color: #0c2340;
-    margin-bottom: 0.5rem;
-}
+
 .gallery-img {
-    height: 500px;
-    object-fit: cover;
-    border-radius: 10px;
+  border-radius: 8px;
+  max-height: 500px;
+  object-fit: cover;
 }
-.broker-card {
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    padding: 1.5rem;
-}
+
 .detail-section {
-    margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
-.detail-section h3 {
-    color: #0c2340;
-    margin-bottom: 1rem;
+
+.broker-card {
+  background-color: var(--light-gray);
+  padding: 1.5rem;
+  border-radius: 8px;
 }
-.amenity-badge {
-    background-color: #f8f9fa;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    margin: 0.25rem;
-    display: inline-block;
+
+/* Blog Styles */
+.article-header {
+  background-color: var(--light-gray);
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+}
+
+.article-meta {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.article-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.article-image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+/* Profile Page */
+.profile-wrapper {
+  background-color: var(--light-gray);
+  min-height: 100vh;
+}
+
+.list-group-item.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-color);
+  padding: 2rem 0;
+  margin-top: auto;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--secondary-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .form-container {
+    margin: 1rem;
+  }
+
+  .property-header {
+    text-align: center;
+  }
+
+  .property-price {
+    margin-top: 1rem;
+  }
+}
+
+/* Property Filter Sidebar */
+.filter-sidebar {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Share Buttons */
+.share-buttons a {
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+.share-buttons a:hover {
+  color: var(--secondary-color);
+}
+
+/* Badge Styles */
+.badge {
+  padding: 0.5em 1em;
+  font-weight: 500;
+}
+
+/* Button Styles */
+.btn-danger {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+/* Utility Classes */
+.mb-30 {
+  margin-bottom: 30px;
 }
