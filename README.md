@@ -64,3 +64,150 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+```
+realestate
+├─ .editorconfig
+├─ app
+│  ├─ Http
+│  │  └─ Controllers
+│  │     ├─ Controller.php
+│  │     ├─ DatabaseController.php
+│  │     ├─ LoginController.php
+│  │     └─ RegisterController.php
+│  ├─ Models
+│  │  └─ User.php
+│  └─ Providers
+│     └─ AppServiceProvider.php
+├─ artisan
+├─ bootstrap
+│  ├─ app.php
+│  ├─ cache
+│  │  ├─ packages.php
+│  │  └─ services.php
+│  └─ providers.php
+├─ composer.json
+├─ composer.lock
+├─ config
+│  ├─ app.php
+│  ├─ auth.php
+│  ├─ cache.php
+│  ├─ database.php
+│  ├─ filesystems.php
+│  ├─ logging.php
+│  ├─ mail.php
+│  ├─ queue.php
+│  ├─ services.php
+│  └─ session.php
+├─ database
+│  ├─ factories
+│  │  └─ UserFactory.php
+│  ├─ migrations
+│  │  ├─ 0001_01_01_000000_create_users_table.php
+│  │  ├─ 0001_01_01_000001_create_cache_table.php
+│  │  └─ 0001_01_01_000002_create_jobs_table.php
+│  └─ seeders
+│     └─ DatabaseSeeder.php
+├─ package-lock.json
+├─ package.json
+├─ phpunit.xml
+├─ public
+│  ├─ .htaccess
+│  ├─ css
+│  │  └─ app.css
+│  ├─ favicon.ico
+│  ├─ img
+│  │  ├─ 1920.jpeg
+│  │  ├─ 1921.jpg
+│  │  ├─ 1924.jpeg
+│  │  ├─ avatar-holder.jpeg
+│  │  ├─ blogs
+│  │  │  ├─ blog.jpeg
+│  │  │  ├─ dP7VlxxYkPaL5kDbLOYBM9hoqhQCgHhNbVedUJkx_medium.jpeg
+│  │  │  ├─ SbCxE4CcXDEpTiDi0i2P5Qi19vGtulvQ3NP1QKZM_medium.jpeg
+│  │  │  ├─ trouver-courtier.jpeg
+│  │  │  └─ zCnIuLxyIzQxM44pe9CfYCVOTokSRE8UDZSw3WUN_medium.jpeg
+│  │  ├─ logo.png
+│  │  ├─ properties
+│  │  │  └─ collection_img.png
+│  │  └─ REMAX_logo.png
+│  ├─ index.php
+│  ├─ js
+│  │  └─ app.js
+│  └─ robots.txt
+├─ README.md
+├─ resources
+│  ├─ css
+│  │  └─ app.css
+│  ├─ frontend
+│  │  ├─ blog.html
+│  │  ├─ blogs.html
+│  │  ├─ css
+│  │  │  └─ app.css
+│  │  ├─ img
+│  │  │  ├─ 1920.jpeg
+│  │  │  ├─ 1921.jpg
+│  │  │  ├─ 1924.jpeg
+│  │  │  ├─ avatar-holder.jpeg
+│  │  │  ├─ blogs
+│  │  │  │  ├─ blog.jpeg
+│  │  │  │  ├─ dP7VlxxYkPaL5kDbLOYBM9hoqhQCgHhNbVedUJkx_medium.jpeg
+│  │  │  │  ├─ SbCxE4CcXDEpTiDi0i2P5Qi19vGtulvQ3NP1QKZM_medium.jpeg
+│  │  │  │  ├─ trouver-courtier.jpeg
+│  │  │  │  └─ zCnIuLxyIzQxM44pe9CfYCVOTokSRE8UDZSw3WUN_medium.jpeg
+│  │  │  ├─ logo.png
+│  │  │  ├─ properties
+│  │  │  │  └─ collection_img.png
+│  │  │  └─ REMAX_logo.png
+│  │  ├─ index.html
+│  │  ├─ js
+│  │  │  └─ app.js
+│  │  ├─ login.html
+│  │  ├─ profile.html
+│  │  ├─ properties.html
+│  │  ├─ property.html
+│  │  └─ register.html
+│  ├─ js
+│  │  ├─ app.js
+│  │  └─ bootstrap.js
+│  └─ views
+│     ├─ auth
+│     │  ├─ login.blade.php
+│     │  └─ register.blade.php
+│     ├─ home
+│     │  └─ index.blade.php
+│     └─ layouts
+│        ├─ app.blade.php
+│        ├─ nonavbar.blade.php
+│        └─ partials
+│           └─ header.blade.php
+├─ routes
+│  ├─ console.php
+│  └─ web.php
+├─ storage
+│  ├─ app
+│  │  ├─ private
+│  │  └─ public
+│  ├─ framework
+│  │  ├─ cache
+│  │  │  └─ data
+│  │  ├─ sessions
+│  │  ├─ testing
+│  │  └─ views
+│  │     ├─ 1830410e6add2c9a16bc2e2c0f223fe5.php
+│  │     ├─ 2043c7b01c02db284d08afb3493ddce9.php
+│  │     ├─ 5625a64003b2c7394d6ac76a4bacc352.php
+│  │     ├─ 9c54d125a757f090476b1f08c7b6c699.php
+│  │     ├─ d37ada5898a9055f1d55c998d3571226.php
+│  │     └─ db22992a1c80cbfc72f9e4913ad16a29.php
+│  └─ logs
+├─ tests
+│  ├─ Feature
+│  │  └─ ExampleTest.php
+│  ├─ Pest.php
+│  ├─ TestCase.php
+│  └─ Unit
+│     └─ ExampleTest.php
+└─ vite.config.js
+
+```
