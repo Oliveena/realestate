@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - RE/MAX</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <div class="profile-wrapper">
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/logo.png" alt="RE/MAX Logo" height="40">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="index.html">RE/MAX Website</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="#">Re/Max Blog</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex align-items-center">
+                        <a href="#" class="text-dark me-3 link-underline-light">Fr</a>
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle d-flex align-items-center" type="button" id="profileDropdown" data-bs-toggle="dropdown">
+                                <img src="img/avatar-holder.jpeg" alt="Profile" class="rounded-circle me-2" width="32" height="32">
+                                <span>John Smith</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="container my-5">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active">
+                            <i class="fas fa-user me-2"></i> Your profile
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <i class="fas fa-cog me-2"></i> Your Preferences
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <i class="fas fa-bell me-2"></i> Notification settings
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Profile Form -->
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title mb-4">Account information</h2>
+                            <form>
+                                <div class="row mb-4">
+                                    <div class="col-md-2 text-center">
+                                        <img src="img/avatar-holder.jpeg" alt="Profile Picture" class="rounded-circle" width="100" height="100">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">First name</label>
+                                        <input type="text" class="form-control" value="John">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Last name</label>
+                                        <input type="text" class="form-control" value="Smith">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Language</label>
+                                        <select class="form-select">
+                                            <option value="en" selected>English</option>
+                                            <option value="fr">Français</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">City (optional)</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Login email address</label>
+                                        <input type="email" class="form-control" value="johnsmith@example.com">
+                                        <div class="text-danger small">Not validated. <a href="#" class="text-danger">Resend the validation e-mail</a></div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Contact email address <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="This email will be used for notifications"></i></label>
+                                        <input type="email" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="text-end mt-4">
+                                    <button type="button" class="btn btn-light me-2">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="image/REMAX_logo.png" alt="RE/MAX Logo" height="40" class="mb-3">
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex justify-content-center">
+                        <p>All rights reserved © 2025</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex justify-content-end gap-3">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/app.css"></script>
+</body>
+</html>
