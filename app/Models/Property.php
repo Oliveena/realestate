@@ -20,6 +20,4 @@ class Property extends Model
         'photos',
         'realtorId',
     ];
-
-    
 }
