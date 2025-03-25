@@ -2,33 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User; 
 use Illuminate\Http\Request;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-use MeekroDB;  // Make sure MeekroDB is being used
 
 class DatabaseController extends Controller
 {
     public function testConnection()
     {
         // Create a Monolog logger instance
-        $log = new Logger('meekrodb');
-        $log->pushHandler(new StreamHandler(storage_path('logs/meekrodb.log'), Logger::ERROR)); // Set path for logging
+        $log = new Logger('eloquent');
+        $log->pushHandler(new StreamHandler(storage_path('logs/eloquent.log'), Logger::ERROR)); // Set path for logging
 
         try {
-            // Set up the MeekroDB connection in static mode
-            MeekroDB::$dsn = 'mysql:host=127.0.0.1;dbname=cp5114_team3';
-            MeekroDB::$user = 'cp5114_team3';
-            MeekroDB::$password = 'vOMw$D1PW]]N';
+            // Use Eloquent to fetch users
+            $users = User::all(); // Eloquent retrieves all users from the 'users' table
 
-            
-            // Test a query to check connection
-            $result = MeekroDB::query("SELECT * FROM users");
-
-            $result = "MeekroDB connection successful!";
+            $result = "Eloquent connection successful!"; // If the query works, the connection is fine
         } catch (\Exception $e) {
             // Log the error using Monolog
-            $log->error('MeekroDB Connection Error: ' . $e->getMessage());
+            $log->error('Eloquent Connection Error: ' . $e->getMessage());
 
             // Return the error message
             $result = "Error connecting to database: " . $e->getMessage();
