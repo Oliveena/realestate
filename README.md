@@ -65,17 +65,22 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+
 ```
 realestate
 ├─ .editorconfig
 ├─ app
 │  ├─ Http
 │  │  └─ Controllers
+│  │     ├─ API
+│  │     │  └─ PropertyController.php
 │  │     ├─ Controller.php
 │  │     ├─ DatabaseController.php
 │  │     ├─ LoginController.php
+│  │     ├─ PropertyController.php
 │  │     └─ RegisterController.php
 │  ├─ Models
+│  │  ├─ Property.php
 │  │  └─ User.php
 │  └─ Providers
 │     └─ AppServiceProvider.php
@@ -182,6 +187,7 @@ realestate
 │        └─ partials
 │           └─ header.blade.php
 ├─ routes
+│  ├─ api.php
 │  ├─ console.php
 │  └─ web.php
 ├─ storage
