@@ -1,55 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1090 Rue du Poitou - RE/MAX Québec</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0c2340;">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="img/logo.png" alt="RE/MAX Logo" height="40">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="properties.html">Properties</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="blogs.html">Blogs</a>
-                    </li>
-                </ul>
-                <div class="d-flex align-items-center">
-                    <a href="addproperty.html" class="btn btn-outline-light me-3">
-                        <i class="fas fa-plus-circle me-1"></i> Add Property
-                    </a>
-                    <div class="dropdown">
-                        <button class="btn btn-outline-light dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            My Account
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
-                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
+<x-app-layout title="View Property">
     <main class="container py-5">
         <!-- Property Header -->
         <div class="row mb-4">
@@ -74,22 +23,22 @@
                 <div id="propertyCarousel" class="carousel slide" data-bs-ride="false">
                     <div class="carousel-inner rounded shadow-sm">
                         <div class="carousel-item active">
-                            <img src="img/1924.jpeg" class="d-block w-100" alt="Property Image 1">
+                            <img src="/img/1924.jpeg" class="d-block w-100" alt="Property Image 1">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/1924.jpeg" class="d-block w-100" alt="Property Image 2">
+                            <img src="/img/1924.jpeg" class="d-block w-100" alt="Property Image 2">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/1924.jpeg" class="d-block w-100" alt="Property Image 3">
+                            <img src="/img/1924.jpeg" class="d-block w-100" alt="Property Image 3">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/1924.jpeg" class="d-block w-100" alt="Property Image 4">
+                            <img src="/img/1924.jpeg" class="d-block w-100" alt="Property Image 4">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/1924.jpeg" class="d-block w-100" alt="Property Image 5">
+                            <img src="/img/1924.jpeg" class="d-block w-100" alt="Property Image 5">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/1924.jpeg" class="d-block w-100" alt="Property Image 6">
+                            <img src="/img/1924.jpeg" class="d-block w-100" alt="Property Image 6">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#propertyCarousel" data-bs-slide="prev">
@@ -107,22 +56,22 @@
                     <div class="col-12">
                         <div class="d-flex justify-content-between">
                             <button type="button" data-bs-target="#propertyCarousel" data-bs-slide-to="0" class="active border border-primary p-0 rounded" aria-current="true" aria-label="Slide 1">
-                                <img src="img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 1" width="120">
+                                <img src="/img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 1" width="120">
                             </button>
                             <button type="button" data-bs-target="#propertyCarousel" data-bs-slide-to="1" class="p-0 rounded" aria-label="Slide 2">
-                                <img src="img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 2" width="120">
+                                <img src="/img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 2" width="120">
                             </button>
                             <button type="button" data-bs-target="#propertyCarousel" data-bs-slide-to="2" class="p-0 rounded" aria-label="Slide 3">
-                                <img src="img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 3" width="120">
+                                <img src="/img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 3" width="120">
                             </button>
                             <button type="button" data-bs-target="#propertyCarousel" data-bs-slide-to="3" class="p-0 rounded" aria-label="Slide 4">
-                                <img src="img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 4" width="120">
+                                <img src="/img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 4" width="120">
                             </button>
                             <button type="button" data-bs-target="#propertyCarousel" data-bs-slide-to="4" class="p-0 rounded" aria-label="Slide 5">
-                                <img src="img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 5" width="120">
+                                <img src="/img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 5" width="120">
                             </button>
                             <button type="button" data-bs-target="#propertyCarousel" data-bs-slide-to="5" class="p-0 rounded" aria-label="Slide 6">
-                                <img src="img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 6" width="120">
+                                <img src="/img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 6" width="120">
                             </button>
                         </div>
                     </div>
@@ -227,7 +176,7 @@
                     <div class="card-body">
                         <h3 class="mb-3">Contact Broker</h3>
                         <div class="text-center mb-4">
-                            <img src="img/avatar-holder.jpeg" alt="NORMAND SHANKS" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+                            <img src="/img/avatar-holder.jpeg" alt="NORMAND SHANKS" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
                             <h4>NORMAND SHANKS</h4>
                             <p class="text-muted">Certified Real Estate Broker, AEO</p>
                             <p class="mb-3">RE/MAX DU CARTIER INC.</p>
@@ -279,37 +228,4 @@
             </div>
         </div>
     </main>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/app.js"></script>
-    
-    <!-- Thumbnail Highlight Script -->
-    <script>
-        // Wait for the DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get the carousel element
-            const propertyCarousel = document.getElementById('propertyCarousel');
-            
-            // Add event listener for when the carousel slide changes
-            propertyCarousel.addEventListener('slide.bs.carousel', function(event) {
-                // Get the slide index that is about to be shown
-                const slideIndex = event.to;
-                
-                // Remove 'active' and 'border-primary' classes from all thumbnails
-                const thumbnails = document.querySelectorAll('[data-bs-target="#propertyCarousel"][data-bs-slide-to]');
-                thumbnails.forEach(thumbnail => {
-                    thumbnail.classList.remove('active', 'border-primary');
-                    thumbnail.classList.remove('border');
-                });
-                
-                // Add 'active' and 'border-primary' classes to the thumbnail corresponding to the active slide
-                const activeThumb = document.querySelector(`[data-bs-target="#propertyCarousel"][data-bs-slide-to="${slideIndex}"]`);
-                if (activeThumb) {
-                    activeThumb.classList.add('active', 'border', 'border-primary');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+</x-app-layout>

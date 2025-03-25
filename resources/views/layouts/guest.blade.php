@@ -17,7 +17,7 @@
                 </div>
                 
                 <div class="text-center mt-3">
-                    <a href="index.html" class="text-muted">Back</a>
+                    <a href="/" class="text-muted">Back</a>
                 </div>
             </div>
         </div>
