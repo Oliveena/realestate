@@ -24,7 +24,6 @@ body {
 
 /* Hero Section */
 .hero-section {
-  background-image: url('image/1920.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -58,7 +57,7 @@ body {
 
 /* Login & Register Pages */
 .sign {
-  background-image: url('image/1921.jpg');
+  background-image: url('/img/1921.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
