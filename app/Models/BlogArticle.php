@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class BlogArticle extends Model
 {
 
-        // explaining to Eloquent that the PK is not 'id'
-        protected $primaryKey = 'blogId';
+    protected $table = 'blogArticles';
+
+    // explaining to Eloquent that the PK is not 'id'
+    protected $primaryKey = 'blogId';
 
     protected $fillable = [
         'title',
