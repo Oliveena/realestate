@@ -2,39 +2,49 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Property;
+use Illuminate\Http\Request;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 class PropertyController extends Controller
 {
+    // setting up a Monolog logger
+    protected $logger;
+
+    public function __construct()
+    {
+        $this->logger = new Logger('property-controller');
+        $this->logger->pushHandler(new StreamHandler(storage_path('logs/property.log'), Logger::DEBUG)); // Store logs in a file
+    }
+
     public function index()
     {
-        // getting all properties
-        $properties = Property::all(); 
-        // viewing all properties
+        // getting all properties along with related photos
+        $properties = Property::with('photos')->get();
         return view('properties.index', compact('properties'));
     }
 
     public function create()
     {
-        // creating a property via form
-        return view('properties.create'); 
+        // displaying property creation form
+        return view('properties.create');
     }
 
     public function store(Request $request)
     {
+        // validating and storing new property data
         $request->validate([
-            'realtorId' => 'required|integer|exists:realtors,id', 
-        'address' => 'required|string|max:100',
-        'region' => 'required|in:Montreal,Laval,Longueuil,Brossard', 
-        'postalCode' => 'required|string|max:10',
-        'type' => 'required|in:Residential,Farm/Country Property,Multi-Family,Condominium',
-        'price' => 'required|integer|min:0', 
-        'bedroom' => 'required|in:1,2,3', 
-        'bathroom' => 'required|in:1,2,3',
-        'lotArea' => 'required|integer|min:1',
-        'photos' => 'nullable|integer|exists:photos,id',
-        // TODO: deal with photos as a separate table  
+            'realtorId' => 'required|integer|exists:users,id', 
+            'address' => 'required|string|max:100',
+            'region' => 'required|in:Montreal,Laval,Longueuil,Brossard',
+            'postalCode' => 'required|string|max:10',
+            'type' => 'required|in:Residential,Farm/Country Property,Multi-Family,Condominium',
+            'price' => 'required|integer|min:0',
+            'bedroom' => 'required|in:1,2,3',
+            'bathroom' => 'required|in:1,2,3',
+            'lotArea' => 'required|integer|min:1',
+            'photos' => 'nullable|array', 
         ]);
 
         $property = Property::create($request->all());
@@ -43,14 +53,14 @@ class PropertyController extends Controller
 
     public function show($id)
     {
-        // find a property by id
-        $property = Property::findOrFail($id); 
+        // finding a property by ID
+        $property = Property::findOrFail($id);
         return view('properties.show', compact('property'));
     }
 
     public function update(Request $request, $id)
     {
-        // update property by ID
+        // updating the property by ID
         $property = Property::findOrFail($id);
         $property->update($request->all());
         return redirect()->route('properties.show', $id);
@@ -58,14 +68,8 @@ class PropertyController extends Controller
 
     public function destroy($id)
     {
-        // delete property by ID
+        // deleting property by ID
         Property::destroy($id);
         return redirect()->route('properties.index');
     }
-
-    public function images($id)
-    {
-        // TODO: Logic to retrieve images for the property
-    }
 }
-

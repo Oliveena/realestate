@@ -4,13 +4,29 @@ use App\Http\Controllers\DatabaseController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+
+//testing a new user
+use App\Models\User;
+
 use Illuminate\Support\Facades\Route;
+
+
+//testing a new user
+Route::get('/testuser', function () {
+    $user = User::where('email', 'test@gmail.com')->first();
+    if ($user) {
+        return response()->json($user);
+    } else {
+        return response()->json(['message' => 'User not found.']);
+    }
+});
+
 
 Route::get('/', function () {
     return view('home.index');
 });
 
-// testing MeekroDB connection
+
 Route::get('/test', [DatabaseController::class, 'testConnection']);
 
 Route::get('/testtest', function () {
@@ -49,3 +65,4 @@ Route::post('/agent/properties/{id}', [PropertyController::class, 'update'])->na
 Route::delete('/agent/properties/{id}', [PropertyController::class, 'destroy'])->name('properties.destroy'); 
 
 Route::get('/agent/properties/{id}/images', [PropertyController::class, 'images'])->name('properties.images');
+

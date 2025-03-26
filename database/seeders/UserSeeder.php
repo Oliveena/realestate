@@ -3,29 +3,34 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use MeekroDB;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
-        // new MeekroDB instance
-        $db = new MeekroDB;
-
-        // inserting test realtor
-        $db->insert('users', [
-            'firstName' => 'Tester',
-            'lastName' => 'Realtor',
-            'email' => 'test@gmail.com',
+        // Create a test user (realtor)
+        $user = User::create([
+            'firstName' => 'MrRealtor',
+            'lastName' => 'Testtest',
             'phoneNumber' => '1234567890',
-            'password' => bcrypt('Test1234!'),
-            'city' => 'Montreal',
-            'role' => 'Realtor',
-            'avatar' => 1 
+            'email' => 'test@gmail.com',
+            // hashing the password!
+            'password' => Hash::make('Test1234!'),  
+            'city' => 'Montreal',  
+            'role' => 'Realtor',   
+            'avatar' => null,         
         ]);
 
-        // get the ID of user
-        $userId = $db->insertId();
-        echo "New user created with ID: $userId";
+        // Confirm the user was created
+        if ($user) {
+            echo "User created successfully: " . $user->email . "\n";
+        } else {
+            echo "User creation failed.\n";
+        }
+
+        // print the user
+        dd($user);
     }
 }

@@ -20,4 +20,10 @@ class Property extends Model
         'photos',
         'realtorId',
     ];
+
+        // Relationship: A property is associated to one user (realtor)
+        public function realtor()
+        {
+            return $this->belongsTo(User::class, 'realtorId');
+        }
 }

@@ -1,8 +1,16 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
-use App\Models\User; 
+namespace App\Http\Controllers;
+
+
+use App\Models\Property;
+use App\Models\Message;
+use App\Models\Comment;
+use App\Models\BlogArticle;
+use App\Models\Image;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -11,24 +19,29 @@ class DatabaseController extends Controller
 {
     public function testConnection()
     {
-        // Create a Monolog logger instance
-        $log = new Logger('eloquent');
-        $log->pushHandler(new StreamHandler(storage_path('logs/eloquent.log'), Logger::ERROR)); // Set path for logging
+        // new Monolog instance
+        $log = new Logger('eloquent'); 
+        // Log to eloquent.log and capture ERROR level logs
+        $log->pushHandler(new StreamHandler(storage_path('logs/eloquent.log'), 400)); 
 
         try {
-            // Use Eloquent to fetch users
-            $users = User::all(); // Eloquent retrieves all users from the 'users' table
+            // fetching all users via Eloquent from 'users'
+            $users = User::all(); 
 
-            $result = "Eloquent connection successful!"; // If the query works, the connection is fine
+            $result = "Eloquent connection successful!"; 
+            // Monolog logs the info message to eloquent.log
+            $log->info($result); 
+
         } catch (\Exception $e) {
-            // Log the error using Monolog
+            // Monolog logs the error
             $log->error('Eloquent Connection Error: ' . $e->getMessage());
 
-            // Return the error message
+            // return the error message
             $result = "Error connecting to database: " . $e->getMessage();
         }
 
-        // Return the result as a JSON response
         return response()->json(['message' => $result]);
     }
 }
+
+
