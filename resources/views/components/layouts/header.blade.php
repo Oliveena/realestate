@@ -17,6 +17,17 @@
                       <!-- TODO: add route for blog if it's there-->
                         <a class="nav-link" href="#">Blogs</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            My Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="myproperties.html">My Properties</a></li>
+                            <li><a class="dropdown-item" href="favoriteproperties.html">My Favorite Properties</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="logout.html">Logout</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login')}}">Login</a>
                     </li>
