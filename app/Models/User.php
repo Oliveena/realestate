@@ -24,6 +24,11 @@ class User extends Model
     // Relationship: One user (realtor) can have many properties
     public function properties()
     {
-        return $this->hasMany(Property::class, 'realtorId');
+        return $this->hasMany(Property::class, 'realtorId');  
+    }
+
+    public function avatar()
+    {
+        return $this->hasOne(Image::class, 'userId'); 
     }
 }

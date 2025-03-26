@@ -4,6 +4,8 @@ use App\Http\Controllers\DatabaseController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\BlogArticleController;
+
 
 //testing a new user
 use App\Models\User;
@@ -74,3 +76,17 @@ Route::get('/agent/properties/{id}/images', [PropertyController::class, 'images'
 // property routes for all users
 
 Route::get('property/search', [PropertyController::class, 'search'])->name('property.search');
+
+// blog article routes
+
+Route::get('/blogs', [BlogArticleController::class, 'index'])->name('articles.index');  // Show all articles
+Route::get('/blogs/create', [BlogArticleController::class, 'create'])->name('articles.create');  // Create new article
+Route::post('/blogs', [BlogArticleController::class, 'store'])->name('articles.store');  // Store new article
+Route::get('/blogs/{article}/edit', [BlogArticleController::class, 'edit'])->name('articles.edit');  // Edit article
+Route::put('/blogs/{article}', [BlogArticleController::class, 'update'])->name('articles.update');  // Update article
+Route::delete('/blogs/{article}', [BlogArticleController::class, 'destroy'])->name('articles.destroy');  // Delete article
+
+// comment routes 
+
+
+

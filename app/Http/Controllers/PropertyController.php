@@ -19,12 +19,11 @@ class PropertyController extends Controller
     }
 
     public function index()
-    {
-        // getting all properties along with related photos
-        $properties = Property::with('photos')->get();
-        return view('properties.index', compact('properties'));
-    }
-
+{
+    // getting all properties with images
+    $properties = Property::with('images')->get(); 
+    return view('properties.index', compact('properties'));
+}
     public function create()
     {
         // displaying property creation form

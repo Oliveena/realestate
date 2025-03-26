@@ -14,10 +14,12 @@ use Monolog\Handler\StreamHandler;
 
 class BlogArticleController extends Controller
 {
-    public function index() {
-        $articles = BlogArticle::with('author', 'illustration')->get();
-        return view('articles.index', compact('articles'));
-    }
+    public function index()
+{
+    // Getting all blog articles with illustrations
+    $articles = BlogArticle::with('images')->get();
+    return view('articles.index', compact('articles'));
+}
     public function create() {
         return view('articles.create');
     }
