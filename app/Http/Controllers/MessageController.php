@@ -15,7 +15,7 @@ class MessageController extends Controller
     {
         // Set up Monolog logger
         $this->logger = new Logger('message-controller');
-        $this->logger->pushHandler(new StreamHandler(storage_path('logs/message.log'), Logger::DEBUG)); // Store logs in a file
+        $this->logger->pushHandler(new StreamHandler(storage_path('logs/message.log'), 100)); // Store logs in a file
     }
 
     public function index() 
