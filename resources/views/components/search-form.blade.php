@@ -2,7 +2,11 @@
 <div class="col-12">
   <div class="card shadow-sm">
       <div class="card-body p-3">
-          <form class="row g-2 align-items-center">
+          <form 
+            action="{{ route('property.search') }}"
+            method="GET"
+            class="row g-2 align-items-center"
+            >
               <div class="col">
                   <select class="form-select">
                       <option selected>Location</option>

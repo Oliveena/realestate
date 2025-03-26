@@ -2,74 +2,69 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Property;
 use Illuminate\Http\Request;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 
 class PropertyController extends Controller
 {
-    // setting up a Monolog logger
-    protected $logger;
-
-    public function __construct()
-    {
-        $this->logger = new Logger('property-controller');
-        $this->logger->pushHandler(new StreamHandler(storage_path('logs/property.log'), Logger::DEBUG)); // Store logs in a file
-    }
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        // getting all properties along with related photos
-        $properties = Property::with('photos')->get();
-        return view('properties.index', compact('properties'));
+        return view('property.index');
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        // displaying property creation form
-        return view('properties.create');
+        return view('property.create');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        // validating and storing new property data
-        $request->validate([
-            'realtorId' => 'required|integer|exists:users,id', 
-            'address' => 'required|string|max:100',
-            'region' => 'required|in:Montreal,Laval,Longueuil,Brossard',
-            'postalCode' => 'required|string|max:10',
-            'type' => 'required|in:Residential,Farm/Country Property,Multi-Family,Condominium',
-            'price' => 'required|integer|min:0',
-            'bedroom' => 'required|in:1,2,3',
-            'bathroom' => 'required|in:1,2,3',
-            'lotArea' => 'required|integer|min:1',
-            'photos' => 'nullable|array', 
-        ]);
-
-        $property = Property::create($request->all());
-        return redirect()->route('properties.index');
+        
     }
 
-    public function show($id)
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
     {
-        // finding a property by ID
-        $property = Property::findOrFail($id);
-        return view('properties.show', compact('property'));
+        return view('property.show');
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
     {
-        // updating the property by ID
-        $property = Property::findOrFail($id);
-        $property->update($request->all());
-        return redirect()->route('properties.show', $id);
+        return view('property.edit');
     }
 
-    public function destroy($id)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
     {
-        // deleting property by ID
-        Property::destroy($id);
-        return redirect()->route('properties.index');
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+
+    public function search()
+    {
+        
+        return view('property.search');
     }
 }
