@@ -51,6 +51,12 @@ class PropertyController extends Controller
         return redirect()->route('properties.index');
     }
 
+    public function search(Request $request)
+    {
+        $properties = Property::where('address', 'like', '%' . $request->input('query') . '%')->get();
+        return view('properties.search', compact('properties'));
+    }
+
     public function show($id)
     {
         // finding a property by ID

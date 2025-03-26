@@ -47,18 +47,18 @@ Route::get('/testtest', function () {
 
 
 // user Routes
-Route::get('/register', [RegisterController::class,'create']);
+Route::get('/register', [RegisterController::class,'create'])->name('register');
 
-Route::get('/login', [LoginController::class,'create']);
+Route::get('/login', [LoginController::class,'create'])->name('login');
 
-// property Routes
+// property routes for agents
 Route::get('/agent/properties', [PropertyController::class, 'index'])->name('properties.index'); 
 
 Route::get('/agent/properties/add', [PropertyController::class, 'create'])->name('properties.create');
 
 Route::post('/agent/properties/add', [PropertyController::class, 'store'])->name('properties.store'); 
 
-Route::get('/agent/properties/{id}', [PropertyController::class, 'show'])->name('properties.show'); 
+Route::get('/agent/properties/{id}', [PropertyController::class, 'show'])->name('property.show'); 
 
 Route::post('/agent/properties/{id}', [PropertyController::class, 'update'])->name('properties.update');
 
@@ -66,3 +66,11 @@ Route::delete('/agent/properties/{id}', [PropertyController::class, 'destroy'])-
 
 Route::get('/agent/properties/{id}/images', [PropertyController::class, 'images'])->name('properties.images');
 
+
+// property routes for registered buyers
+
+
+
+// property routes for all users
+
+Route::get('property/search', [PropertyController::class, 'search'])->name('property.search');
