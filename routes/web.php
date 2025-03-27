@@ -6,13 +6,15 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BlogArticleController;
 use App\Http\Controllers\ProfileController;
-use App\Models\User;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
 
-
-//testing a new user
+// Testing a new user
 Route::get('/testuser', function () {
     $user = User::where('email', 'test@gmail.com')->first();
     if ($user) {
@@ -22,81 +24,67 @@ Route::get('/testuser', function () {
     }
 });
 
-
+// Main page (Home route)
 Route::get('/', function () {
     return View::make('home.index');
-});
+});;
 
-
+// Test DB Connection Route
 Route::get('/test', [DatabaseController::class, 'testConnection']);
 
-Route::get('/testtest', function () {
-    try {
-        DB::connect('mysql://cp5114_team3:vOMw$D1PW]]N@127.0.0.1/cp5114_team3');
-
-        $result = DB::query('SELECT 1');
-
-        if ($result) {
-            return "MeekroDB Connection successful!";
-        } else {
-            return "MeekroDB Query failed!";
-        }
-    } catch (\Exception $e) {
-        return "Error: " . $e->getMessage();
-    }
-});
-
-
-// user Routes
+// Registration and login routes
 Route::get('/register', [RegisterController::class,'create'])->name('register');
 Route::post('/register', [RegisterController::class,'store'])->name('register.store');
-
 Route::get('/login', [LoginController::class,'create'])->name('login');
 Route::post('/login', [LoginController::class,'store'])->name('login.store');
 Route::post('/logout', [LoginController::class,'destroy'])->name('logout');
-
-// property routes for agents
-Route::get('/agent/properties', [PropertyController::class, 'index'])->name('properties.index'); 
-
-Route::get('/agent/properties/add', [PropertyController::class, 'create'])->name('properties.create');
-
-Route::post('/agent/properties/add', [PropertyController::class, 'store'])->name('properties.store'); 
-
-Route::get('/agent/properties/{id}', [PropertyController::class, 'show'])->name('property.show'); 
-
-Route::post('/agent/properties/{id}', [PropertyController::class, 'update'])->name('properties.update');
-
-Route::delete('/agent/properties/{id}', [PropertyController::class, 'destroy'])->name('properties.destroy'); 
-
-Route::get('/agent/properties/{id}/images', [PropertyController::class, 'images'])->name('properties.images');
 
 // realtor profile routes
 Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');  // This should be a PUT request for updating
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');  
 });
 
-// property routes for registered buyers
+// Property routes (Non-registered & Registered Users)
+Route::get('/agent/properties', [PropertyController::class, 'index'])->name('properties.index');
+Route::get('/agent/properties/{id}', [PropertyController::class, 'show'])->name('property.show');
+Route::get('/property/search', [PropertyController::class, 'search'])->name('property.search');
 
+// Blog Article routes (Non-registered & Registered Users)
+Route::get('/blogs', [BlogArticleController::class, 'index'])->name('blogs.index');
+Route::get('/blogs/{blogId}', [BlogArticleController::class, 'show'])->name('blogs.show');
 
+// Routes for Registered Users and Realtors (Authenticated users)
+Route::middleware('auth')->group(function () {
 
-// property routes for all users
+    // Routes for Registered Users
+    // Registered users can only CRUD comments
+    Route::middleware('can:create,App\Models\Comment')->group(function () {
+        Route::get('/blogs/{article}/comments/create', [CommentController::class, 'create'])->name('comments.create');
+        Route::post('/blogs/{article}/comments', [CommentController::class, 'store'])->name('comments.store');
+        Route::get('/blogs/{article}/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+        Route::put('/blogs/{article}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+        Route::delete('/blogs/{article}/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+    });
 
-Route::get('property/search', [PropertyController::class, 'search'])->name('property.search');
+    // Routes for Realtors
+    // Realtors can CRUD properties and blog articles
+    Route::middleware('can:manage-properties')->group(function () {
+        Route::get('/agent/properties/add', [PropertyController::class, 'create'])->name('properties.create');
+        Route::post('/agent/properties/add', [PropertyController::class, 'store'])->name('properties.store');
+        Route::get('/agent/properties/{id}/edit', [PropertyController::class, 'edit'])->name('properties.edit');
+        Route::post('/agent/properties/{id}', [PropertyController::class, 'update'])->name('properties.update');
+        Route::delete('/agent/properties/{id}', [PropertyController::class, 'destroy'])->name('properties.destroy');
+        Route::get('/agent/properties/{id}/images', [PropertyController::class, 'images'])->name('properties.images');
+    });
 
-// blog article routes
-
-Route::get('/blogs', [BlogArticleController::class, 'index'])->name('articles.index');  // Show all articles
-Route::get('/blogs/create', [BlogArticleController::class, 'create'])->name('articles.create');  // Create new article
-Route::post('/blogs', [BlogArticleController::class, 'store'])->name('articles.store');  // Store new article
-Route::get('/blogs/{article}/edit', [BlogArticleController::class, 'edit'])->name('articles.edit');  // Edit article
-Route::put('/blogs/{article}', [BlogArticleController::class, 'update'])->name('articles.update');  // Update article
-Route::delete('/blogs/{article}', [BlogArticleController::class, 'destroy'])->name('articles.destroy');  // Delete article
-
-// comment routes 
-
-
-
-
-
+    // Realtors can CRUD Blog Articles
+    Route::middleware('can:manage-articles')->group(function () {
+        Route::get('/blogs/create', [BlogArticleController::class, 'create'])->name('blogs.create');
+        Route::post('/blogs', [BlogArticleController::class, 'store'])->name('blogs.store');
+        Route::get('/blogs/{article}/edit', [BlogArticleController::class, 'edit'])->name('blogs.edit');
+        Route::put('/blogs/{article}', [BlogArticleController::class, 'update'])->name('blogs.update');
+        Route::delete('/blogs/{article}', [BlogArticleController::class, 'destroy'])->name('blogs.destroy');
+    });
+});

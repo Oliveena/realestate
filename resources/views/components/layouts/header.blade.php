@@ -14,7 +14,7 @@
                         <a class="nav-link active" href="{{ route('property.search')}}">Properties</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('articles.index') }}">Blogs</a>
+                        <a class="nav-link" href="{{ route('blogs.index') }}">Blogs</a>
                     </li>
                     @auth
                         <li class="nav-item dropdown">

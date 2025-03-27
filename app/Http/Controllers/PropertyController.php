@@ -19,42 +19,116 @@ class PropertyController extends Controller
     }
 
     public function index()
-{
-    // getting all properties with images
-    $properties = Property::with('images')->get(); 
-    return view('properties.index', compact('properties'));
-}
+    {
+        $properties = Property::paginate(16);
+        return view('properties.index', compact('properties'));
+    }
+
     public function create()
     {
-        // displaying property creation form
         return view('properties.create');
     }
 
     public function store(Request $request)
     {
-        // validating and storing new property data
         $request->validate([
-            'realtorId' => 'required|integer|exists:users,id', 
             'address' => 'required|string|max:100',
-            'region' => 'required|in:Montreal,Laval,Longueuil,Brossard',
-            'postalCode' => 'required|string|max:10',
-            'type' => 'required|in:Residential,Farm/Country Property,Multi-Family,Condominium',
-            'price' => 'required|integer|min:0',
-            'bedroom' => 'required|in:1,2,3',
-            'bathroom' => 'required|in:1,2,3',
-            'lotArea' => 'required|integer|min:1',
-            'photos' => 'nullable|array', 
+            'region' => 'required|string',
+            'price' => 'required|integer',
+            'type' => 'required|string',
+            'bedroom' => 'nullable|in:1,2,3',
+            'bathroom' => 'nullable|in:1,2,3',
+            'yearBuilt' => 'required|integer',
+            'description' => 'required|string',
         ]);
 
-        $property = Property::create($request->all());
-        return redirect()->route('properties.index');
+        Property::create([
+            'address' => $request->address,
+            'region' => $request->region,
+            'price' => $request->price,
+            'type' => $request->type,
+            'bedroom' => $request->bedroom,
+            'bathroom' => $request->bathroom,
+            'yearBuilt' => $request->yearBuilt,
+            'description' => $request->description,
+            'realtorId' => 1,   // TODO: creplace 1 with user authentification 
+        ]);
+
+        return redirect()->route('properties.index')->with('success', 'Property added successfully!');
     }
+
+    public function edit($id)
+    {
+        // get property to edit by ID
+        $property = Property::findOrFail($id);
+
+        // return view with property info
+        return view('properties.edit', compact('property'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // get property by ID
+        $property = Property::findOrFail($id);
+
+        // validate data
+        $request->validate([
+            'address' => 'required|string|max:100',
+            'region' => 'required|string',
+            'price' => 'required|integer',
+            'type' => 'required|string',
+            'bedroom' => 'nullable|in:1,2,3',
+            'bathroom' => 'nullable|in:1,2,3',
+            'yearBuilt' => 'required|integer',
+            'description' => 'required|string',
+        ]);
+
+        // update property data
+        $property->update([
+            'address' => $request->address,
+            'region' => $request->region,
+            'price' => $request->price,
+            'type' => $request->type,
+            'bedroom' => $request->bedroom,
+            'bathroom' => $request->bathroom,
+            'yearBuilt' => $request->yearBuilt,
+            'description' => $request->description,
+        ]);
+
+        // toast message + return to index page
+        return redirect()->route('properties.index')->with('success', 'Property updated successfully!');
+    }
+
 
     public function search(Request $request)
     {
-        $properties = Property::where('address', 'like', '%' . $request->input('query') . '%')->get();
+        $query = Property::query();
+
+        if ($request->has('location')) {
+            $query->where('location', $request->input('location'));
+        }
+
+        if ($request->has('min_price') && $request->has('max_price')) {
+            $query->whereBetween('price', [$request->input('min_price'), $request->input('max_price')]);
+        }
+
+        if ($request->has('property_type')) {
+            $query->whereIn('type', $request->input('property_type'));
+        }
+
+        if ($request->has('bedrooms')) {
+            $query->where('bedrooms', '>=', $request->input('bedrooms'));
+        }
+
+        if ($request->has('bathrooms')) {
+            $query->where('bathrooms', '>=', $request->input('bathrooms'));
+        }
+
+        $properties = $query->paginate(10);
+
         return view('properties.search', compact('properties'));
     }
+
 
     public function show($id)
     {
@@ -63,18 +137,30 @@ class PropertyController extends Controller
         return view('properties.show', compact('property'));
     }
 
-    public function update(Request $request, $id)
-    {
-        // updating the property by ID
-        $property = Property::findOrFail($id);
-        $property->update($request->all());
-        return redirect()->route('properties.show', $id);
-    }
-
     public function destroy($id)
     {
-        // deleting property by ID
-        Property::destroy($id);
-        return redirect()->route('properties.index');
+
+        $property = Property::findOrFail($id);
+
+        // TODO: delete all images associated with a deleted property 
+        // if ($property->images) {
+        //     foreach ($property->images as $image) {
+        //         ...::delete('public/properties/' . $property->id . '/' . $image->file_name);
+        //     }
+        // }
+
+        $property->delete();
+
+        return redirect()->route('properties.index')->with('success', 'Property and associated images deleted successfully');
+    }
+
+
+    public function images($id)
+    {
+        $property = Property::findOrFail($id);
+
+        $images = $property->images;
+
+        return view('properties.images', compact('property', 'images'));
     }
 }

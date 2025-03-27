@@ -1,45 +1,55 @@
 <?php
+
 namespace App\Models;
 
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
+    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    protected $fillable = [
-        'firstName',
-        'lastName',
-        'phoneNumber',
-        'email',
-        'password',
-        'city',
-        'role',
-        'google_id',
-        'facebook_id'
-    ];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+    // app/Models/User.php
 
+protected $fillable = [
+    'firstName',     
+    'lastName',        
+    'email',
+    'password',
+    'phoneNumber',
+    'city',
+    'role',
+];
+
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    protected $casts = [
-        'phoneNumber' => 'integer',
-        'email_verified_at' => 'datetime',
-    ];
-
-    // Relationship: One user (realtor) can have many properties
-    public function properties()
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
     {
-        return $this->hasMany(Property::class, 'realtorId');  
-    }
-
-    public function avatar()
-    {
-        return $this->hasOne(Image::class, 'userId'); 
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
     }
 }

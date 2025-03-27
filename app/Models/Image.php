@@ -24,7 +24,7 @@ class Image extends Model
     // relationship with BlogArticle
     public function blogArticle()
     {
-        return $this->belongsTo(BlogArticle::class, 'blogId');  //FK
+        return $this->belongsTo(BlogArticle::class, 'theblogId');  //FK
     }
 
     // relationship with User (for avatar)

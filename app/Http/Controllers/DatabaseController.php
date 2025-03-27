@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-namespace App\Http\Controllers;
-
-
 use App\Models\Property;
 use App\Models\Message;
 use App\Models\Comment;
@@ -14,7 +11,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-
+ 
+ 
 class DatabaseController extends Controller
 {
     public function testConnection()
