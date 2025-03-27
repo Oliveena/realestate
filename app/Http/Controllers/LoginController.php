@@ -44,5 +44,4 @@ class LoginController extends Controller
 // it would call the model 
 // 
 
-=======
->>>>>>> 2e5eb90de0a4395c1a40c44558093b1e0e202cb9
+

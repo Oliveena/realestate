@@ -1,20 +1,19 @@
 <?php
 
-<<<<<<< HEAD
 use App\Http\Controllers\DatabaseController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BlogArticleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
-
-use App\Models\User;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
 
-
-//testing a new user
+// Testing a new user
 Route::get('/testuser', function () {
     $user = User::where('email', 'test@gmail.com')->first();
     if ($user) {
@@ -24,26 +23,27 @@ Route::get('/testuser', function () {
     }
 });
 
-// main page
-Route::get('/', function () {
-    return View::make('home.index');
-});
+// Main page (Home route)
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// test DB Connection Route
+// Test DB Connection Route
 Route::get('/test', [DatabaseController::class, 'testConnection']);
 
-// registation and login
+// Registration and login routes
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 Route::get('/login', [LoginController::class, 'create'])->name('login');
+Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
-// Property routes for all users (Non-registered & Registered Users)
+// Property routes (Non-registered & Registered Users)
 Route::get('/agent/properties', [PropertyController::class, 'index'])->name('properties.index');
 Route::get('/agent/properties/{id}', [PropertyController::class, 'show'])->name('property.show');
-Route::get('property/search', [PropertyController::class, 'search'])->name('property.search');
+Route::get('/property/search', [PropertyController::class, 'search'])->name('property.search');
 
-// Blog Article routes for all users (Non-registered & Registered Users)
-Route::get('/blogs', [BlogArticleController::class, 'index'])->name('articles.index');
-Route::get('/blogs/{id}', [BlogArticleController::class, 'show'])->name('articles.show');
+// Blog Article routes (Non-registered & Registered Users)
+Route::get('/blogs', [BlogArticleController::class, 'index'])->name('blogs.index');
+Route::get('/blogs/{blogId}', [BlogArticleController::class, 'show'])->name('blogs.show');
 
 // Routes for Registered Users and Realtors (Authenticated users)
 Route::middleware('auth')->group(function () {
@@ -71,35 +71,10 @@ Route::middleware('auth')->group(function () {
 
     // Realtors can CRUD Blog Articles
     Route::middleware('can:manage-articles')->group(function () {
-        Route::get('/blogs/create', [BlogArticleController::class, 'create'])->name('articles.create');
-        Route::post('/blogs', [BlogArticleController::class, 'store'])->name('articles.store');
-        Route::get('/blogs/{article}/edit', [BlogArticleController::class, 'edit'])->name('articles.edit');
-        Route::put('/blogs/{article}', [BlogArticleController::class, 'update'])->name('articles.update');
-        Route::delete('/blogs/{article}', [BlogArticleController::class, 'destroy'])->name('articles.destroy');
+        Route::get('/blogs/create', [BlogArticleController::class, 'create'])->name('blogs.create');
+        Route::post('/blogs', [BlogArticleController::class, 'store'])->name('blogs.store');
+        Route::get('/blogs/{article}/edit', [BlogArticleController::class, 'edit'])->name('blogs.edit');
+        Route::put('/blogs/{article}', [BlogArticleController::class, 'update'])->name('blogs.update');
+        Route::delete('/blogs/{article}', [BlogArticleController::class, 'destroy'])->name('blogs.destroy');
     });
 });
-=======
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PropertyController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\LoginController;
-use Illuminate\Support\Facades\Route;
-
-// Home route
-Route::get('/', [HomeController::class, 'index'])->name('home');
-
-// Property routes
-// Need to define search route above anything else
-Route::get('/property/search', [PropertyController::class, 'search'])->name('property.search');
-
-Route::resource('/property', PropertyController::class);
-
-// Register route
-Route::get('/register', [RegisterController::class,'create'])->name('register');
-Route::post('/register', [RegisterController::class,'store'])->name('register.store');
-
-// Login route
-Route::get('/login', [LoginController::class,'create'])->name('login');
-Route::post('/login', [LoginController::class,'store'])->name('login.store');
-Route::post('/logout', [LoginController::class,'destroy'])->name('logout');
->>>>>>> 2e5eb90de0a4395c1a40c44558093b1e0e202cb9

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -18,42 +18,61 @@ class BlogArticleController extends Controller
     {
         // Get all blog articles, paginated (3 per page)
         $articles = BlogArticle::with('images', 'author')->paginate(3);
-        return view('articles.index', compact('articles'));
+        return view('blogs.index', compact('articles'));
     }
-    
-    public function create() {
-        return view('articles.create');
+
+    public function create()
+    {
+        return view('blogs.create');
     }
 
 
     public function store(Request $request)
-{
-    $validated = $request->validate([
-        'title' => 'required|string|max:255',
-        'body' => 'required|string',
-        'illustration' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ensure illustration is an image
-    ]);
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'body' => 'required|string',
+            'illustration' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ensure illustration is an image
+        ]);
 
-    $article = BlogArticle::create($validated);
+        $article = BlogArticle::create($validated);
 
-    if ($request->hasFile('illustration')) {
-        $path = $request->file('illustration')->store('illustrations', 'public');
-        $article->illustration = $path;
-        $article->save();
+        if ($request->hasFile('illustration')) {
+            $path = $request->file('illustration')->store('illustrations', 'public');
+            $article->illustration = $path;
+            $article->save();
+        }
+
+        return redirect()->route('blogs.index');
     }
+    // app/Http/Controllers/BlogArticleController.php
 
-    return redirect()->route('articles.index');
+    public function show($blogId)
+{
+    $article = BlogArticle::find($blogId);
+    
+    if (!$article) {
+        abort(404, 'Article not found');
+    }
+    
+    return view('blogs.show', compact('article'));
 }
 
-    public function edit(BlogArticle $article) {
-        return view('articles.edit', compact('article'));
+
+    public function edit(BlogArticle $article)
+    {
+        return view('blogs.edit', compact('article'));
     }
-    public function update(Request $request, BlogArticle $article) {
+
+    public function update(Request $request, BlogArticle $article)
+    {
         $article->update($request->all());
-        return redirect()->route('articles.index');
+        return redirect()->route('blogs.index');
     }
-    public function destroy(BlogArticle $article) {
+
+    public function destroy(BlogArticle $article)
+    {
         $article->delete();
-        return redirect()->route('articles.index');
+        return redirect()->route('blogs.index');
     }
 }

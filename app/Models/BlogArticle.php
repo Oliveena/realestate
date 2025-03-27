@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class BlogArticle extends Model
 {
 
-    protected $table = 'blogArticles';
+    protected $table = 'blogarticles';
 
     // explaining to Eloquent that the PK is not 'id'
     protected $primaryKey = 'blogId';
@@ -19,6 +19,8 @@ class BlogArticle extends Model
         'illustration', // TODO: make not null
     ];
 
+    public $timestamps = true;
+
     // Relationship: A blog article is associated with one author (User)
     public function author()
     {
@@ -27,6 +29,6 @@ class BlogArticle extends Model
 
     public function images()
     {
-        return $this->hasMany(Image::class, 'blogId'); // FK
+        return $this->hasMany(Image::class, 'theblogId'); // FK
     }
 }

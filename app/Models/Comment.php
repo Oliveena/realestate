@@ -20,12 +20,12 @@ class Comment extends Model
     // Relationship: A comment is authored by one user
     public function author()
     {
-        return $this->belongsTo(User::class, 'commentAuthorId');  // FK
+        return $this->belongsTo(User::class, 'commentAuthorID');  // FK
     }
 
     // Relationship: A comment belongs to one blog article
     public function article()
     {
-        return $this->belongsTo(BlogArticle::class, 'articleId');  // FK
+        return $this->belongsTo(BlogArticle::class, 'blogId');  // FK
     }
 }

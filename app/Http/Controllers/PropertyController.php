@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Monolog\Logger;
@@ -165,72 +164,3 @@ class PropertyController extends Controller
         return view('properties.images', compact('property', 'images'));
     }
 }
-=======
-use Illuminate\Http\Request;
-
-class PropertyController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return view('property.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('property.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        return view('property.show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        return view('property.edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-
-    public function search()
-    {
-        
-        return view('property.search');
-    }
-}
-
->>>>>>> 2e5eb90de0a4395c1a40c44558093b1e0e202cb9

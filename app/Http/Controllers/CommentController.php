@@ -23,42 +23,62 @@ class CommentController extends Controller
         return view('comments.create');
     }
 
-    public function store(Request $request) {
-        Comment::create($request->all());
-        return redirect()->route('comments.index');
+    public function store(Request $request, BlogArticle $article)
+{
+    // Check if the user is authenticated using auth()->check()
+    if (!auth()->check()) {
+        return redirect()->route('login')->with('error', 'You need to be logged in to post a comment.');
     }
 
-    //TODO: requires functional authentification for testing 
-    // public function edit(BlogArticle $article, Comment $comment)
-    // {
-    //     // Ensure that the user can only edit their own comment
-    //     if ($comment->commentAuthorId !== auth()->id()) {
-    //         abort(403, 'Unauthorized action');
-    //     }
+    // Proceed with the comment creation
+    $request->validate([
+        'commentBody' => 'required|max:200',
+    ]);
+
+    // Create the new comment and associate it with the authenticated user and article
+    $comment = new Comment();
+    $comment->commentBody = $request->input('commentBody');
+    $comment->commentAuthorID = auth()->user()->id; 
+    $comment->articleId = $article->blogId; 
+    $comment->save();
+
+    // Redirect back with a success message
+    return redirect()->route('blogs.show', ['blogId' => $article->blogId])
+                     ->with('success', 'Comment posted successfully!');
+}
+
     
-    //     return view('comments.edit', compact('article', 'comment'));
-    // }
+
+    public function edit(BlogArticle $article, Comment $comment)
+    {
+        // Ensure that the user can only edit their own comment
+        if ($comment->commentAuthorId !== auth()->id()) {
+            abort(403, 'Unauthorized action');
+        }
     
-    // public function update(Request $request, BlogArticle $article, Comment $comment)
-    // {
-    //     // Ensure that the user can only update their own comment
-    //     if ($comment->commentAuthorId !== auth()->id()) {
-    //         abort(403, 'Unauthorized action');
-    //     }
+        return view('comments.edit', compact('article', 'comment'));
+    }
     
-    //     $comment->update($request->all());
-    //     return redirect()->route('articles.show', $article->blogId);
-    // }
+    public function update(Request $request, BlogArticle $article, Comment $comment)
+    {
+        // Ensure that the user can only update their own comment
+        if ($comment->commentAuthorId !== auth()->id()) {
+            abort(403, 'Unauthorized action');
+        }
     
-    // public function destroy(BlogArticle $article, Comment $comment)
-    // {
-    //     // Ensure that the user can only delete their own comment
-    //     if ($comment->commentAuthorId !== auth()->id()) {
-    //         abort(403, 'Unauthorized action');
-    //     }
+        $comment->update($request->all());
+        return redirect()->route('articles.show', $article->blogId);
+    }
     
-    //     $comment->delete();
-    //     return redirect()->route('articles.show', $article->blogId);
-    // }
+    public function destroy(BlogArticle $article, Comment $comment)
+    {
+        // Ensure that the user can only delete their own comment
+        if ($comment->commentAuthorId !== auth()->id()) {
+            abort(403, 'Unauthorized action');
+        }
+    
+        $comment->delete();
+        return redirect()->route('articles.show', $article->blogId);
+    }
     
 }

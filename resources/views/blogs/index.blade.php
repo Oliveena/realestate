@@ -22,11 +22,14 @@
                                     {{ Str::limit(strip_tags($article->body), 150) }} <!-- Excerpt -->
                                 </p>
                                 <p class="card-text text-muted">
-                                    <small>By {{ $article->author->name }} | {{ $article->created_at->format('M d, Y') }}</small>
+                                    <small>
+                                        By {{ $article->author->name }} |
+                                        {{ $article->created_at ? $article->created_at->format('M d, Y') : 'Unknown Date' }}
+                                    </small>
                                 </p>
                             </div>
                             <div class="mt-3">
-                                <a href="{{ route('articles.show', $article->blogId) }}" class="btn btn-primary">Read More</a>
+                                <a href="{{ route('blogs.show', $article->blogId) }}" class="btn btn-primary">Read More</a>
                             </div>
                         </div>
                     </div>
