@@ -15,7 +15,7 @@
                     </li>
                     <li class="nav-item">
                       <!-- TODO: add route for blog if it's there-->
-                        <a class="nav-link" href="#">Blogs</a>
+                        <a class="nav-link" href="{{ route('articles.index')}}">Blogs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login')}}">Login</a>

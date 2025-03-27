@@ -3,7 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+<<<<<<< HEAD
 use Database\Seeders\CommentSeeder;
+=======
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+>>>>>>> 2e5eb90de0a4395c1a40c44558093b1e0e202cb9
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,10 +24,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
     }
+<<<<<<< HEAD
 
 
     //public function runComment()
     //{
     //    $this->call(CommentSeeder::class);
     //}
+=======
+>>>>>>> 2e5eb90de0a4395c1a40c44558093b1e0e202cb9
 }

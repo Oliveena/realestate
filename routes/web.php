@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\DatabaseController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\RegisterController;
@@ -75,3 +76,25 @@ Route::middleware('auth')->group(function () {
         Route::delete('/blogs/{article}', [BlogArticleController::class, 'destroy'])->name('articles.destroy');
     });
 });
+=======
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Route;
+
+// Home route
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Property routes
+// Need to define search route above anything else
+Route::get('/property/search', [PropertyController::class, 'search'])->name('property.search');
+
+Route::resource('/property', PropertyController::class);
+
+// Register route
+Route::get('/register', [RegisterController::class,'create'])->name('register');
+
+// Login route
+Route::get('/login', [LoginController::class,'create'])->name('login');
+>>>>>>> 2e5eb90de0a4395c1a40c44558093b1e0e202cb9
