@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
     }
 
 
-    public function runComment()
-    {
-        $this->call(CommentSeeder::class);
-    }
+    //public function runComment()
+    //{
+    //    $this->call(CommentSeeder::class);
+    //}
 }

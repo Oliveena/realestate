@@ -1,3 +1,103 @@
-<h1>Create a property</h1>
-<h2>Hey there</h2>
-<p>Form to create properties by a realtor will go here.</p>
+<x-app-layout>
+    <x-slot name="title">Add A Property</x-slot>
+
+    <div class="container mt-4">
+        <h2>Add New Property</h2>
+        <form action="{{ route('properties.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+
+            <!-- Address -->
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" required>
+                @error('address')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Region -->
+            <div class="mb-3">
+                <label for="region" class="form-label">Region</label>
+                <select class="form-select @error('region') is-invalid @enderror" id="region" name="region" required>
+                    <option value="Montreal">Montreal</option>
+                    <option value="Laval">Laval</option>
+                    <option value="Longueuil">Longueuil</option>
+                    <option value="Brossard">Brossard</option>
+                </select>
+                @error('region')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Price -->
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" required>
+                @error('price')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Type -->
+            <div class="mb-3">
+                <label for="type" class="form-label">Property Type</label>
+                <select class="form-select @error('type') is-invalid @enderror" id="type" name="type" required>
+                    <option value="Residential">Residential</option>
+                    <option value="Farm/Country Property">Farm/Country Property</option>
+                    <option value="Commercial">Commercial</option>
+                </select>
+                @error('type')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Bedroom -->
+            <div class="mb-3">
+                <label for="bedroom" class="form-label">Bedrooms</label>
+                <select class="form-select @error('bedroom') is-invalid @enderror" id="bedroom" name="bedroom">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                @error('bedroom')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Bathroom -->
+            <div class="mb-3">
+                <label for="bathroom" class="form-label">Bathrooms</label>
+                <select class="form-select @error('bathroom') is-invalid @enderror" id="bathroom" name="bathroom">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                @error('bathroom')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Year Built -->
+            <div class="mb-3">
+                <label for="yearBuilt" class="form-label">Year Built</label>
+                <input type="number" class="form-control @error('yearBuilt') is-invalid @enderror" id="yearBuilt" name="yearBuilt" required>
+                @error('yearBuilt')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="4" required></textarea>
+                @error('description')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Add Property</button>
+        </form>
+    </div>
+</x-app-layout>
+
