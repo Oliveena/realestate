@@ -9,22 +9,24 @@ use App\Http\Controllers\BlogArticleController;
 use App\Http\Controllers\CommentController;
 
 use App\Models\User;
-
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\View;
+
 
 //testing a new user
 Route::get('/testuser', function () {
     $user = User::where('email', 'test@gmail.com')->first();
     if ($user) {
-        return response()->json($user);
+        return Response::json($user);
     } else {
-        return response()->json(['message' => 'User not found.']);
+        return Response::json(['message' => 'User not found.']);
     }
 });
 
 // main page
 Route::get('/', function () {
-    return view('home.index');
+    return View::make('home.index');
 });
 
 // test DB Connection Route
@@ -94,7 +96,10 @@ Route::resource('/property', PropertyController::class);
 
 // Register route
 Route::get('/register', [RegisterController::class,'create'])->name('register');
+Route::post('/register', [RegisterController::class,'store'])->name('register.store');
 
 // Login route
 Route::get('/login', [LoginController::class,'create'])->name('login');
+Route::post('/login', [LoginController::class,'store'])->name('login.store');
+Route::post('/logout', [LoginController::class,'destroy'])->name('logout');
 >>>>>>> 2e5eb90de0a4395c1a40c44558093b1e0e202cb9
