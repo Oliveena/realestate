@@ -393,3 +393,45 @@ YYYY-MM-DD NAME
 3. Need assistance / figure things out
 - Eloquent 
 
+
+
+2024-03-27 Ana
+1. Done/ not done since last scrum:
+- blog and comments are visible
+- testing for registration are done 
+- advancesd presentation PowerPoint 
+
+2. To do until next Scrum:
+- finalize routing 
+- do my best with Google Maps API
+- adapt blade.php for user avatars
+
+3. Need assistance / figure things out
+- finish PowerPoint 
+- testing my routes 
+
+2025-03-27 Trang
+1. Done/ not done since last scrum:
+- finish plain signin/signout + register (no validation or google or fb yet)
+
+2. To do until next Scrum:
+- work on properties
+
+3. Need assistance / figure things out
+- 
+
+
+2025-03-27 Dang
+1. Done/ not done since last scrum:
+- Views and routes for realtor profile
+- Controller for profile (issue)
+
+2. To do until next Scrum:
+- debug controllers
+- add migrations
+- test realtor profile with logged in user
+
+3. Need assistance / figure things out
+- fixing controlller
+- testing profile on website
+
