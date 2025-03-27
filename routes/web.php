@@ -47,9 +47,9 @@ Route::middleware('auth')->group(function () {
 });
 
 // Property routes (Non-registered & Registered Users)
-Route::get('/agent/properties', [PropertyController::class, 'index'])->name('property.index');
-Route::get('/agent/properties/{id}', [PropertyController::class, 'show'])->name('property.show');
+Route::get('/property', [PropertyController::class, 'index'])->name('property.index');
 Route::get('/property/search', [PropertyController::class, 'search'])->name('property.search');
+Route::get('/property/{id}', [PropertyController::class, 'show'])->name('property.show');
 
 // Blog Article routes (Non-registered & Registered Users)
 Route::get('/blogs', [BlogArticleController::class, 'index'])->name('blogs.index');
@@ -71,12 +71,12 @@ Route::middleware('auth')->group(function () {
     // Routes for Realtors
     // Realtors can CRUD properties and blog articles
     Route::middleware('can:manage-properties')->group(function () {
-        Route::get('/agent/properties/add', [PropertyController::class, 'create'])->name('property.create');
-        Route::post('/agent/properties/add', [PropertyController::class, 'store'])->name('property.store');
-        Route::get('/agent/properties/{id}/edit', [PropertyController::class, 'edit'])->name('property.edit');
-        Route::post('/agent/properties/{id}', [PropertyController::class, 'update'])->name('property.update');
-        Route::delete('/agent/properties/{id}', [PropertyController::class, 'destroy'])->name('property.destroy');
-        Route::get('/agent/properties/{id}/images', [PropertyController::class, 'images'])->name('property.images');
+        Route::get('/property/add', [PropertyController::class, 'create'])->name('property.create');
+        Route::post('/property/add', [PropertyController::class, 'store'])->name('property.store');
+        Route::get('/property/{id}/edit', [PropertyController::class, 'edit'])->name('property.edit');
+        Route::post('/property/{id}', [PropertyController::class, 'update'])->name('property.update');
+        Route::delete('/property/{id}', [PropertyController::class, 'destroy'])->name('property.destroy');
+        Route::get('/property/{id}/images', [PropertyController::class, 'images'])->name('property.images');
     });
 
     // Realtors can CRUD Blog Articles

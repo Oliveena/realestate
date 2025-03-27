@@ -27,7 +27,7 @@ class Property extends Model
 
     public function photos()
     {
-        return $this->hasMany(Image::class, 'propertyId');
+        return $this->hasMany(Image::class, 'thepropertyId');
     }
 
     // Relationship: A property is associated to one user (realtor)
@@ -38,6 +38,6 @@ class Property extends Model
 
     public function images()
     {
-        return $this->hasMany(Image::class, 'propertyId'); //FK
+        return $this->hasMany(Image::class, 'thepropertyId'); //FK
     }
 }

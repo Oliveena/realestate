@@ -19,7 +19,7 @@
       <div class="col-sm-6 mb-1">
         <label for="firstName" class="form-label">First name</label>
         <input type="text" class="form-control @error('firstName') is-invalid @enderror" 
-               id="firstName" name="firstName" value="{{ old('firstName') }}" required />
+              id="firstName" name="firstName" value="{{ old('firstName') }}" required />
         @error('firstName')
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -27,7 +27,7 @@
       <div class="col-md-6 mb-3">
         <label for="lastName" class="form-label">Last name</label>
         <input type="text" class="form-control @error('lastName') is-invalid @enderror" 
-               id="lastName" name="lastName" value="{{ old('lastName') }}" required />
+              id="lastName" name="lastName" value="{{ old('lastName') }}" required />
         @error('lastName')
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -36,7 +36,7 @@
     <div class="mb-3">
       <label for="email" class="form-label">Your email address</label>
       <input type="email" class="form-control @error('email') is-invalid @enderror" 
-             id="email" name="email" value="{{ old('email') }}" required />
+            id="email" name="email" value="{{ old('email') }}" required />
       @error('email')
         <div class="invalid-feedback">{{ $message }}</div>
       @enderror
@@ -44,8 +44,8 @@
     <div class="mb-3">
       <label for="phoneNumber" class="form-label">Phone Number (Optional)</label>
       <input type="tel" class="form-control @error('phoneNumber') is-invalid @enderror" 
-             id="phoneNumber" name="phoneNumber" value="{{ old('phoneNumber') }}" 
-             placeholder="Enter your phone number" />
+            id="phoneNumber" name="phoneNumber" value="{{ old('phoneNumber') }}" 
+            placeholder="Enter your phone number" />
       @error('phoneNumber')
         <div class="invalid-feedback">{{ $message }}</div>
       @enderror
@@ -53,7 +53,7 @@
     <div class="mb-3">
       <label for="password" class="form-label">Your password</label>
       <input type="password" class="form-control @error('password') is-invalid @enderror" 
-             id="password" name="password" required />
+            id="password" name="password" required />
       @error('password')
         <div class="invalid-feedback">{{ $message }}</div>
       @enderror
@@ -61,7 +61,7 @@
     <div class="mb-3">
       <label for="confirmPassword" class="form-label">Confirm your password</label>
       <input type="password" class="form-control" 
-             id="confirmPassword" name="password_confirmation" required />
+            id="confirmPassword" name="password_confirmation" required />
     </div>
     <div class="mb-3">
       <label for="city" class="form-label">City</label>

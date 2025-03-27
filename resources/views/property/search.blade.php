@@ -97,7 +97,8 @@
                                 address="{{ $property->address }}, {{ $property->region }}"
                                 :bedrooms="$property->bedroom"
                                 :bathrooms="$property->bathroom"
-                                :id="$property->id"
+                                :id="$property->propertyId"
+                                :images="$property->images"
                                 :created_at="$property->created_at"
                             />
                         @empty

@@ -18,7 +18,7 @@ class Image extends Model
     // relationship with Property
     public function property()
     {
-        return $this->belongsTo(Property::class, 'propertyId');
+        return $this->belongsTo(Property::class, 'thepropertyId');
     }
 
     // relationship with BlogArticle

@@ -27,6 +27,7 @@ protected $fillable = [
     'phoneNumber',
     'city',
     'role',
+    'avatar',
 ];
 
 

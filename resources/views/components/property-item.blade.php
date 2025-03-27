@@ -1,21 +1,13 @@
-@props([
-    'price' => '$499,000',
-    'type' => 'Duplex',
-    'address' => '1999 Av. Drouin, Québec (Beauport)',
-    'bedrooms' => null,
-    'bathrooms' => null,
-    'id' => 1
-])
-
 <div class="property-item col-md-3">
     <div class="card h-100">
         <div class="position-relative">
             <a href="{{ route('property.show', $id) }}">
-            <img src="/img/properties/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
+            @if(count($images) > 0)
+                <img src="{{ asset('img/properties/' . basename($images[0]->imagePath)) }}" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
+            @else
+                <img src="{{ asset('img/properties/collection_img.png') }}" class="card-img-top" alt="No Image Available" style="height: 200px; object-fit: cover;">
+            @endif
             </a>
-            <button class="btn position-absolute top-0 end-0 m-2 text-white">
-                <i class="far fa-heart"></i>
-            </button>
         </div>
         <div class="card-body d-flex flex-column">
             <div class="flex-grow-1">

@@ -24,11 +24,11 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 @if(Auth::user()->role === 'Realtor')
                                     <li><a class="dropdown-item" href="{{ route('property.index') }}">My Properties</a></li>
-                                    <li><a class="dropdown-item" href="#">My Blogs</a></li>
+                                    <li><a class="dropdown-item" href={{ route('blogs.myblogs') }}>My Blogs</a></li>
                                 @elseif(Auth::user()->role === 'Buyer')
                                     <li><a class="dropdown-item" href="#">My Favorite Properties</a></li>
                                 @endif
-                                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profile.view') }}">My Profile</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
