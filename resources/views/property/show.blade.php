@@ -50,32 +50,6 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-                
-                <!-- Thumbnail Indicators -->
-                <div class="row mt-3">
-                    <div class="col-12">
-                        <div class="d-flex justify-content-between">
-                            <button type="button" data-bs-target="#propertyCarousel" data-bs-slide-to="0" class="active border border-primary p-0 rounded" aria-current="true" aria-label="Slide 1">
-                                <img src="/img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 1" width="120">
-                            </button>
-                            <button type="button" data-bs-target="#propertyCarousel" data-bs-slide-to="1" class="p-0 rounded" aria-label="Slide 2">
-                                <img src="/img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 2" width="120">
-                            </button>
-                            <button type="button" data-bs-target="#propertyCarousel" data-bs-slide-to="2" class="p-0 rounded" aria-label="Slide 3">
-                                <img src="/img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 3" width="120">
-                            </button>
-                            <button type="button" data-bs-target="#propertyCarousel" data-bs-slide-to="3" class="p-0 rounded" aria-label="Slide 4">
-                                <img src="/img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 4" width="120">
-                            </button>
-                            <button type="button" data-bs-target="#propertyCarousel" data-bs-slide-to="4" class="p-0 rounded" aria-label="Slide 5">
-                                <img src="/img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 5" width="120">
-                            </button>
-                            <button type="button" data-bs-target="#propertyCarousel" data-bs-slide-to="5" class="p-0 rounded" aria-label="Slide 6">
-                                <img src="/img/1924.jpeg" class="img-thumbnail" alt="Thumbnail 6" width="120">
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -103,67 +77,6 @@
                                 <li class="mb-2"><strong>Bedrooms:</strong> 5</li>
                                 <li class="mb-2"><strong>Bathrooms:</strong> 3</li>
                             </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Property Features -->
-                <div class="card shadow-sm mb-4 p-3">
-                    <h3 class="mb-3">Property Features</h3>
-                    <div class="row">
-                        <div class="col-md-4 mb-2">
-                            <div class="d-flex align-items-center">
-                                <span class="text-success me-2"><i class="fas fa-check-circle"></i></span>
-                                <span>Air Conditioning</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <div class="d-flex align-items-center">
-                                <span class="text-success me-2"><i class="fas fa-check-circle"></i></span>
-                                <span>Swimming Pool</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <div class="d-flex align-items-center">
-                                <span class="text-success me-2"><i class="fas fa-check-circle"></i></span>
-                                <span>Fireplace</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <div class="d-flex align-items-center">
-                                <span class="text-success me-2"><i class="fas fa-check-circle"></i></span>
-                                <span>Garage</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <div class="d-flex align-items-center">
-                                <span class="text-danger me-2"><i class="fas fa-times-circle"></i></span>
-                                <span>Finished Basement</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <div class="d-flex align-items-center">
-                                <span class="text-success me-2"><i class="fas fa-check-circle"></i></span>
-                                <span>Balcony/Terrace</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <div class="d-flex align-items-center">
-                                <span class="text-danger me-2"><i class="fas fa-times-circle"></i></span>
-                                <span>Security System</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <div class="d-flex align-items-center">
-                                <span class="text-danger me-2"><i class="fas fa-times-circle"></i></span>
-                                <span>Recently Renovated</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <div class="d-flex align-items-center">
-                                <span class="text-danger me-2"><i class="fas fa-times-circle"></i></span>
-                                <span>Energy Efficient</span>
-                            </div>
                         </div>
                     </div>
                 </div>

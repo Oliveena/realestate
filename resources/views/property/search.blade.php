@@ -8,17 +8,17 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title mb-4">Criteria</h5>
-                            <form>
+                            <form action="{{ route('property.search') }}" method="GET">
                                 <!-- Location -->
                                 <div class="mb-4">
                                     <label class="form-label">Location</label>
-                                    <select class="form-select mb-3">
-                                        <option selected>Regions</option>
-                                        <option>Montreal</option>
-                                        <option>Laval</option>
-                                        <option>Longueuil</option>
-                                        <option>Brossard</option>
-                                        <option>Boucherville</option>
+                                    <select class="form-select mb-3" name="location">
+                                        <option value="">All Regions</option>
+                                        <option value="Montreal" {{ request('location') == 'Montreal' ? 'selected' : '' }}>Montreal</option>
+                                        <option value="Laval" {{ request('location') == 'Laval' ? 'selected' : '' }}>Laval</option>
+                                        <option value="Longueuil" {{ request('location') == 'Longueuil' ? 'selected' : '' }}>Longueuil</option>
+                                        <option value="Brossard" {{ request('location') == 'Brossard' ? 'selected' : '' }}>Brossard</option>
+                                        <option value="Boucherville" {{ request('location') == 'Boucherville' ? 'selected' : '' }}>Boucherville</option>
                                     </select>
                                 </div>
     
@@ -27,11 +27,11 @@
                                     <label class="form-label">Price Range</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">$</span>
-                                        <input type="number" class="form-control" placeholder="Min">
+                                        <input type="number" class="form-control" name="min_price" placeholder="Min" value="{{ request('min_price') }}">
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-text">$</span>
-                                        <input type="number" class="form-control" placeholder="Max">
+                                        <input type="number" class="form-control" name="max_price" placeholder="Max" value="{{ request('max_price') }}">
                                     </div>
                                 </div>
     
@@ -39,23 +39,23 @@
                                 <div class="mb-4">
                                     <label class="form-label">Property Type</label>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="residential">
+                                        <input class="form-check-input" type="checkbox" id="residential" name="property_type[]" value="Residential" {{ in_array('Residential', (array)request('property_type')) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="residential">Residential</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="farm">
+                                        <input class="form-check-input" type="checkbox" id="farm" name="property_type[]" value="Farm/Country Property" {{ in_array('Farm/Country Property', (array)request('property_type')) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="farm">Farm / Country Property</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="multiplex">
+                                        <input class="form-check-input" type="checkbox" id="multiplex" name="property_type[]" value="Multiplex" {{ in_array('Multiplex', (array)request('property_type')) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="multiplex">Multiplex</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="commercial">
+                                        <input class="form-check-input" type="checkbox" id="commercial" name="property_type[]" value="Commercial/Industrial" {{ in_array('Commercial/Industrial', (array)request('property_type')) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="commercial">Commercial / Industrial</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="land">
+                                        <input class="form-check-input" type="checkbox" id="land" name="property_type[]" value="Land" {{ in_array('Land', (array)request('property_type')) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="land">Land</label>
                                     </div>
                                 </div>
@@ -63,24 +63,22 @@
                                 <!-- Property Details -->
                                 <div class="mb-4">
                                     <label class="form-label">Property Details</label>
-                                    <select class="form-select mb-3">
-                                        <option selected>Number of bedrooms</option>
-                                        <option>1+</option>
-                                        <option>2+</option>
-                                        <option>3+</option>
-                                        <option>4+</option>
+                                    <select class="form-select mb-3" name="bedrooms">
+                                        <option value="">Any bedrooms</option>
+                                        <option value="1" {{ request('bedrooms') == '1' ? 'selected' : '' }}>1</option>
+                                        <option value="2" {{ request('bedrooms') == '2' ? 'selected' : '' }}>2</option>
+                                        <option value="3" {{ request('bedrooms') == '3' ? 'selected' : '' }}>3</option>
                                     </select>
-                                    <select class="form-select">
-                                        <option selected>Number of bathrooms</option>
-                                        <option>1+</option>
-                                        <option>2+</option>
-                                        <option>3+</option>
-                                        <option>4+</option>
+                                    <select class="form-select" name="bathrooms">
+                                        <option value="">Any bathrooms</option>
+                                        <option value="1" {{ request('bathrooms') == '1' ? 'selected' : '' }}>1</option>
+                                        <option value="2" {{ request('bathrooms') == '2' ? 'selected' : '' }}>2</option>
+                                        <option value="3" {{ request('bathrooms') == '3' ? 'selected' : '' }}>3</option>
                                     </select>
                                 </div>
     
                                 <div class="d-grid gap-2">
-                                    <button class="btn btn-outline-secondary" type="reset">Reset</button>
+                                    <a href="{{ route('property.search') }}" class="btn btn-outline-secondary">Reset</a>
                                     <button class="btn btn-danger" type="submit">Apply</button>
                                 </div>
                             </form>
@@ -92,221 +90,28 @@
                 <div class="col-md-9">
                     <!-- Property Cards -->
                     <div class="row g-4">
-                        <!-- Property Card 1 -->
-                        <div class="col-md-3">
-                            <div class="card h-100">
-                                <div class="position-relative">
-                                    <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
-                                    <img src="/img/properties/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
-                                    <button class="btn position-absolute top-0 end-0 m-2 text-white">
-                                        <i class="far fa-heart"></i>
-                                    </button>
-                                </div>
-                                <div class="card-body d-flex flex-column">
-                                    <div class="flex-grow-1">
-                                        <h5 class="card-title">$499,000</h5>
-                                        <p class="card-text">Duplex</p>
-                                        <p class="card-text text-muted">1999 Av. Drouin, Québec (Beauport)</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between text-muted border-top pt-2">
-                                        <span><i class="fas fa-bed"></i> 2</span>
-                                        <span><i class="fas fa-bath"></i> 1</span>
-                                        <span><i class="fas fa-ruler-combined"></i> 1,045 ft²</span>
-                                    </div>
-                                </div>
+                        @forelse($properties as $property)
+                            <x-property-item 
+                                price="${{ number_format($property->price) }}"
+                                type="{{ $property->type }}"
+                                address="{{ $property->address }}, {{ $property->region }}"
+                                :bedrooms="$property->bedroom"
+                                :bathrooms="$property->bathroom"
+                                :id="$property->id"
+                                :created_at="$property->created_at"
+                            />
+                        @empty
+                            <div class="col-12 text-center py-5">
+                                <h3>No properties found matching your criteria</h3>
+                                <p>Try adjusting your search filters</p>
                             </div>
-                        </div>
-    
-                        <!-- Property Card 2 -->
-                        <div class="col-md-3">
-                            <div class="card h-100">
-                                <div class="position-relative">
-                                    <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
-                                    <img src="/img/properties/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
-                                    <button class="btn position-absolute top-0 end-0 m-2 text-white">
-                                        <i class="far fa-heart"></i>
-                                    </button>
-                                </div>
-                                <div class="card-body d-flex flex-column">
-                                    <div class="flex-grow-1">
-                                        <h5 class="card-title">$614,924 +GST/QST</h5>
-                                        <p class="card-text">Two-storey house</p>
-                                        <p class="card-text text-muted">27 Ch. du Graphite, L'Ange-Gardien</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between text-muted border-top pt-2">
-                                        <span><i class="fas fa-bed"></i> 3</span>
-                                        <span><i class="fas fa-bath"></i> 2</span>
-                                        <span><i class="fas fa-ruler-combined"></i> 1,794 ft²</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <!-- Property Card 3 -->
-                        <div class="col-md-3">
-                            <div class="card h-100">
-                                <div class="position-relative">
-                                    <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
-                                    <img src="/img/properties/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
-                                    <button class="btn position-absolute top-0 end-0 m-2 text-white">
-                                        <i class="far fa-heart"></i>
-                                    </button>
-                                </div>
-                                <div class="card-body d-flex flex-column">
-                                    <div class="flex-grow-1">
-                                        <h5 class="card-title">$799,000</h5>
-                                        <p class="card-text">Apartment - Condominium</p>
-                                        <p class="card-text text-muted">2335 Rue des Équinoxes app. 414, Montréal</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between text-muted border-top pt-2">
-                                        <span><i class="fas fa-bed"></i> 2</span>
-                                        <span><i class="fas fa-bath"></i> 2</span>
-                                        <span><i class="fas fa-ruler-combined"></i> 105.50 m²</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <!-- Property Card 4 -->
-                        <div class="col-md-3">
-                            <div class="card h-100">
-                                <div class="position-relative">
-                                    <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
-                                    <img src="/img/properties/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
-                                    <button class="btn position-absolute top-0 end-0 m-2 text-white">
-                                        <i class="far fa-heart"></i>
-                                    </button>
-                                </div>
-                                <div class="card-body d-flex flex-column">
-                                    <div class="flex-grow-1">
-                                        <h5 class="card-title">$499,000</h5>
-                                        <p class="card-text">Duplex</p>
-                                        <p class="card-text text-muted">1999 Av. Drouin, Québec (Beauport)</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between text-muted border-top pt-2">
-                                        <span><i class="fas fa-bed"></i> 2</span>
-                                        <span><i class="fas fa-bath"></i> 1</span>
-                                        <span><i class="fas fa-ruler-combined"></i> 1,045 ft²</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <!-- Property Card 5 -->
-                        <div class="col-md-3">
-                            <div class="card h-100">
-                                <div class="position-relative">
-                                    <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
-                                    <img src="/img/properties/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
-                                    <button class="btn position-absolute top-0 end-0 m-2 text-white">
-                                        <i class="far fa-heart"></i>
-                                    </button>
-                                </div>
-                                <div class="card-body d-flex flex-column">
-                                    <div class="flex-grow-1">
-                                        <h5 class="card-title">$614,924 +GST/QST</h5>
-                                        <p class="card-text">Two-storey house</p>
-                                        <p class="card-text text-muted">27 Ch. du Graphite, L'Ange-Gardien</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between text-muted border-top pt-2">
-                                        <span><i class="fas fa-bed"></i> 3</span>
-                                        <span><i class="fas fa-bath"></i> 2</span>
-                                        <span><i class="fas fa-ruler-combined"></i> 1,794 ft²</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <!-- Property Card 6 -->
-                        <div class="col-md-3">
-                            <div class="card h-100">
-                                <div class="position-relative">
-                                    <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
-                                    <img src="/img/properties/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
-                                    <button class="btn position-absolute top-0 end-0 m-2 text-white">
-                                        <i class="far fa-heart"></i>
-                                    </button>
-                                </div>
-                                <div class="card-body d-flex flex-column">
-                                    <div class="flex-grow-1">
-                                        <h5 class="card-title">$799,000</h5>
-                                        <p class="card-text">Apartment - Condominium</p>
-                                        <p class="card-text text-muted">2335 Rue des Équinoxes app. 414, Montréal</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between text-muted border-top pt-2">
-                                        <span><i class="fas fa-bed"></i> 2</span>
-                                        <span><i class="fas fa-bath"></i> 2</span>
-                                        <span><i class="fas fa-ruler-combined"></i> 105.50 m²</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <!-- Property Card 7 -->
-                        <div class="col-md-3">
-                            <div class="card h-100">
-                                <div class="position-relative">
-                                    <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
-                                    <img src="/img/properties/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
-                                    <button class="btn position-absolute top-0 end-0 m-2 text-white">
-                                        <i class="far fa-heart"></i>
-                                    </button>
-                                </div>
-                                <div class="card-body d-flex flex-column">
-                                    <div class="flex-grow-1">
-                                        <h5 class="card-title">$799,000</h5>
-                                        <p class="card-text">Apartment - Condominium</p>
-                                        <p class="card-text text-muted">2335 Rue des Équinoxes app. 414, Montréal</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between text-muted border-top pt-2">
-                                        <span><i class="fas fa-bed"></i> 2</span>
-                                        <span><i class="fas fa-bath"></i> 2</span>
-                                        <span><i class="fas fa-ruler-combined"></i> 105.50 m²</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <!-- Property Card 8 -->
-                        <div class="col-md-3">
-                            <div class="card h-100">
-                                <div class="position-relative">
-                                    <span class="position-absolute top-0 start-0 badge bg-primary m-2">New</span>
-                                    <img src="/img/properties/collection_img.png" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
-                                    <button class="btn position-absolute top-0 end-0 m-2 text-white">
-                                        <i class="far fa-heart"></i>
-                                    </button>
-                                </div>
-                                <div class="card-body d-flex flex-column">
-                                    <div class="flex-grow-1">
-                                        <h5 class="card-title">$799,000</h5>
-                                        <p class="card-text">Apartment - Condominium</p>
-                                        <p class="card-text text-muted">2335 Rue des Équinoxes app. 414, Montréal</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between text-muted border-top pt-2">
-                                        <span><i class="fas fa-bed"></i> 2</span>
-                                        <span><i class="fas fa-bath"></i> 2</span>
-                                        <span><i class="fas fa-ruler-combined"></i> 105.50 m²</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforelse
                     </div>
     
                     
                     <!-- Pagination -->
                     <nav class="mt-4">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
+                        {{ $properties->links() }}
                     </nav>
                 </div>
             </div>

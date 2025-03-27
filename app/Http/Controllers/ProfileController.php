@@ -49,6 +49,7 @@
 
             // Update user data
             $user->update($request->only(['firstName', 'lastName', 'email', 'phoneNumber', 'city', 'avatar']));
+            
 
             return redirect()->route('profile.show')->with('success', 'Profile updated successfully');
         }

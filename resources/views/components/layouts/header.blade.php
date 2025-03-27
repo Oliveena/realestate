@@ -23,7 +23,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 @if(Auth::user()->role === 'Realtor')
-                                    <li><a class="dropdown-item" href="{{ route('properties.index') }}">My Properties</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('property.index') }}">My Properties</a></li>
                                     <li><a class="dropdown-item" href="#">My Blogs</a></li>
                                 @elseif(Auth::user()->role === 'Buyer')
                                     <li><a class="dropdown-item" href="#">My Favorite Properties</a></li>

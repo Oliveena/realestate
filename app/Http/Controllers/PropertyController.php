@@ -6,6 +6,7 @@ use App\Models\Property;
 use Illuminate\Http\Request;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
 {
@@ -21,12 +22,12 @@ class PropertyController extends Controller
     public function index()
     {
         $properties = Property::paginate(16);
-        return view('properties.index', compact('properties'));
+        return view('property.index', compact('properties'));
     }
 
     public function create()
     {
-        return view('properties.create');
+        return view('property.create');
     }
 
     public function store(Request $request)
@@ -51,10 +52,10 @@ class PropertyController extends Controller
             'bathroom' => $request->bathroom,
             'yearBuilt' => $request->yearBuilt,
             'description' => $request->description,
-            'realtorId' => 1,   // TODO: creplace 1 with user authentification 
+            'realtorId' => Auth::id(),   // Use authenticated user's ID 
         ]);
 
-        return redirect()->route('properties.index')->with('success', 'Property added successfully!');
+        return redirect()->route('property.index')->with('success', 'Property added successfully!');
     }
 
     public function edit($id)
@@ -63,7 +64,7 @@ class PropertyController extends Controller
         $property = Property::findOrFail($id);
 
         // return view with property info
-        return view('properties.edit', compact('property'));
+        return view('property.edit', compact('property'));
     }
 
     public function update(Request $request, $id)
@@ -96,7 +97,7 @@ class PropertyController extends Controller
         ]);
 
         // toast message + return to index page
-        return redirect()->route('properties.index')->with('success', 'Property updated successfully!');
+        return redirect()->route('property.index')->with('success', 'Property updated successfully!');
     }
 
 
@@ -104,29 +105,37 @@ class PropertyController extends Controller
     {
         $query = Property::query();
 
-        if ($request->has('location')) {
-            $query->where('location', $request->input('location'));
+        // Filter by region
+        if ($request->filled('location')) {
+            $query->where('region', $request->input('location'));
         }
 
-        if ($request->has('min_price') && $request->has('max_price')) {
-            $query->whereBetween('price', [$request->input('min_price'), $request->input('max_price')]);
+        // Filter by price range
+        if ($request->filled('min_price')) {
+            $query->where('price', '>=', $request->input('min_price'));
+        }
+        
+        if ($request->filled('max_price')) {
+            $query->where('price', '<=', $request->input('max_price'));
         }
 
-        if ($request->has('property_type')) {
+        // Filter by property type
+        if ($request->filled('property_type')) {
             $query->whereIn('type', $request->input('property_type'));
         }
 
-        if ($request->has('bedrooms')) {
-            $query->where('bedrooms', '>=', $request->input('bedrooms'));
+        // Filter by bedrooms and bathrooms
+        if ($request->filled('bedrooms')) {
+            $query->where('bedroom', '=', $request->input('bedrooms'));
         }
 
-        if ($request->has('bathrooms')) {
-            $query->where('bathrooms', '>=', $request->input('bathrooms'));
+        if ($request->filled('bathrooms')) {
+            $query->where('bathroom', '=', $request->input('bathrooms'));
         }
 
-        $properties = $query->paginate(10);
+        $properties = $query->paginate(8)->withQueryString();
 
-        return view('properties.search', compact('properties'));
+        return view('property.search', compact('properties'));
     }
 
 
@@ -134,7 +143,7 @@ class PropertyController extends Controller
     {
         // finding a property by ID
         $property = Property::findOrFail($id);
-        return view('properties.show', compact('property'));
+        return view('property.show', compact('property'));
     }
 
     public function destroy($id)
@@ -151,7 +160,7 @@ class PropertyController extends Controller
 
         $property->delete();
 
-        return redirect()->route('properties.index')->with('success', 'Property and associated images deleted successfully');
+        return redirect()->route('property.index')->with('success', 'Property and associated images deleted successfully');
     }
 
 
@@ -161,6 +170,6 @@ class PropertyController extends Controller
 
         $images = $property->images;
 
-        return view('properties.images', compact('property', 'images'));
+        return view('property.images', compact('property', 'images'));
     }
 }

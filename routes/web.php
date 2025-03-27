@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Property routes (Non-registered & Registered Users)
-Route::get('/agent/properties', [PropertyController::class, 'index'])->name('properties.index');
+Route::get('/agent/properties', [PropertyController::class, 'index'])->name('property.index');
 Route::get('/agent/properties/{id}', [PropertyController::class, 'show'])->name('property.show');
 Route::get('/property/search', [PropertyController::class, 'search'])->name('property.search');
 
@@ -71,12 +71,12 @@ Route::middleware('auth')->group(function () {
     // Routes for Realtors
     // Realtors can CRUD properties and blog articles
     Route::middleware('can:manage-properties')->group(function () {
-        Route::get('/agent/properties/add', [PropertyController::class, 'create'])->name('properties.create');
-        Route::post('/agent/properties/add', [PropertyController::class, 'store'])->name('properties.store');
-        Route::get('/agent/properties/{id}/edit', [PropertyController::class, 'edit'])->name('properties.edit');
-        Route::post('/agent/properties/{id}', [PropertyController::class, 'update'])->name('properties.update');
-        Route::delete('/agent/properties/{id}', [PropertyController::class, 'destroy'])->name('properties.destroy');
-        Route::get('/agent/properties/{id}/images', [PropertyController::class, 'images'])->name('properties.images');
+        Route::get('/agent/properties/add', [PropertyController::class, 'create'])->name('property.create');
+        Route::post('/agent/properties/add', [PropertyController::class, 'store'])->name('property.store');
+        Route::get('/agent/properties/{id}/edit', [PropertyController::class, 'edit'])->name('property.edit');
+        Route::post('/agent/properties/{id}', [PropertyController::class, 'update'])->name('property.update');
+        Route::delete('/agent/properties/{id}', [PropertyController::class, 'destroy'])->name('property.destroy');
+        Route::get('/agent/properties/{id}/images', [PropertyController::class, 'images'])->name('property.images');
     });
 
     // Realtors can CRUD Blog Articles
