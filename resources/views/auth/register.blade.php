@@ -64,6 +64,21 @@
              id="confirmPassword" name="password_confirmation" required />
     </div>
     <div class="mb-3">
+      <label for="city" class="form-label">City</label>
+      <select class="form-control @error('city') is-invalid @enderror" 
+              id="city" name="city" required>
+        <option value="">Select a city</option>
+        <option value="Montreal" {{ old('city') == 'Montreal' ? 'selected' : '' }}>Montreal</option>
+        <option value="Laval" {{ old('city') == 'Laval' ? 'selected' : '' }}>Laval</option>
+        <option value="Longueuil" {{ old('city') == 'Longueuil' ? 'selected' : '' }}>Longueuil</option>
+        <option value="Brossard" {{ old('city') == 'Brossard' ? 'selected' : '' }}>Brossard</option>
+        <option value="Boucherville" {{ old('city') == 'Boucherville' ? 'selected' : '' }}>Boucherville</option>
+      </select>
+      @error('city')
+        <div class="invalid-feedback">{{ $message }}</div>
+      @enderror
+    </div>
+    <div class="mb-3">
       <label for="role" class="form-label">Role</label>
       <select class="form-control @error('role') is-invalid @enderror" 
               id="role" name="role" required>
