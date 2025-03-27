@@ -5,6 +5,7 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BlogArticleController;
+use App\Http\Controllers\ProfileController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
@@ -69,6 +70,12 @@ Route::delete('/agent/properties/{id}', [PropertyController::class, 'destroy'])-
 
 Route::get('/agent/properties/{id}/images', [PropertyController::class, 'images'])->name('properties.images');
 
+// realtor profile routes
+Route::middleware('auth')->group(function () {
+    Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');  // This should be a PUT request for updating
+});
 
 // property routes for registered buyers
 
