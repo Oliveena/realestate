@@ -14,26 +14,33 @@
                         <a class="nav-link active" href="{{ route('property.search')}}">Properties</a>
                     </li>
                     <li class="nav-item">
-                      <!-- TODO: add route for blog if it's there-->
-                        <a class="nav-link" href="#">Blogs</a>
+                        <a class="nav-link" href="{{ route('articles.index') }}">Blogs</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            My Account
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="myproperties.html">My Properties</a></li>
-                            <li><a class="dropdown-item" href="favoriteproperties.html">My Favorite Properties</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="logout.html">Logout</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login')}}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register')}}">Register</a>
-                    </li>
+                    @auth
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->firstName }} {{ Auth::user()->lastName }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ route('properties.index') }}">My Properties</a></li>
+                                <li><a class="dropdown-item" href="#">My Favorite Properties</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login')}}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register')}}">Register</a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
         </div>
