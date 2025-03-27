@@ -22,8 +22,13 @@
                                 {{ Auth::user()->firstName }} {{ Auth::user()->lastName }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{ route('properties.index') }}">My Properties</a></li>
-                                <li><a class="dropdown-item" href="#">My Favorite Properties</a></li>
+                                @if(Auth::user()->role === 'Realtor')
+                                    <li><a class="dropdown-item" href="{{ route('properties.index') }}">My Properties</a></li>
+                                    <li><a class="dropdown-item" href="#">My Blogs</a></li>
+                                @elseif(Auth::user()->role === 'Buyer')
+                                    <li><a class="dropdown-item" href="#">My Favorite Properties</a></li>
+                                @endif
+                                <li><a class="dropdown-item" href="#">My Profile</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">

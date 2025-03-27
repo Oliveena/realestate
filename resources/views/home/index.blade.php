@@ -5,7 +5,7 @@
         <h1 class="mb-30">One click away from your future home!</h1>
         <p class="mb-5">Find the property of your dreams</p>
         <div class="col-md-2 col-sm-12">
-          <button onclick="window.location.href='{{ route('property.search') }}'" class="btn btn-danger w-100">Find</button>
+          <a href="{{ route('property.search') }}" class="btn btn-danger w-100">Find</a>
         </div>
       </div>
     </section>
