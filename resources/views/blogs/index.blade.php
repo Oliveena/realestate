@@ -21,12 +21,19 @@
                                 <p class="card-text">
                                     {{ Str::limit(strip_tags($article->body), 150) }} <!-- Excerpt -->
                                 </p>
-                                <p class="card-text text-muted">
-                                    <small>
-                                        By {{ $article->author->name }} |
-                                        {{ $article->created_at ? $article->created_at->format('M d, Y') : 'Unknown Date' }}
-                                    </small>
-                                </p>
+                                <p class="card-text text-muted d-flex align-items-center">
+                                    <img src="#" style="width: 30px; height: 30px; margin-right: 10px;" alt="Author Avatar">
+                                    <!-- Avatar Image -->
+                                    {{-- @if($article->author && $article->author->images->where('imageType', 'avatar')->first())
+                                        <img src="{{ $article->author->images->where('imageType', 'avatar')->first()->getImageUrlAttribute() }}" class="rounded-circle" style="width: 30px; height: 30px; margin-right: 10px;" alt="Author Avatar">
+                                    @else
+                                        <!-- Default avatar when no image exists -->
+                                        <img src="{{ asset('images/default-avatar.jpg') }}" class="rounded-circle" style="width: 30px; height: 30px; margin-right: 10px;" alt="Default Avatar">
+                                    @endif --}}
+                                    <!-- Author Info -->
+                                    {{ $article->author->name ?? 'Unknown Author' }}
+                                </p>                                
+                                
                             </div>
                             <div class="mt-3">
                                 <a href="{{ route('blogs.show', $article->blogId) }}" class="btn btn-primary">Read More</a>
