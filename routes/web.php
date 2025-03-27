@@ -5,6 +5,7 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BlogArticleController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
@@ -24,17 +25,26 @@ Route::get('/testuser', function () {
 });
 
 // Main page (Home route)
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return View::make('home.index');
+});;
 
 // Test DB Connection Route
 Route::get('/test', [DatabaseController::class, 'testConnection']);
 
 // Registration and login routes
-Route::get('/register', [RegisterController::class, 'create'])->name('register');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
-Route::get('/login', [LoginController::class, 'create'])->name('login');
-Route::post('/login', [LoginController::class, 'store'])->name('login.store');
-Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+Route::get('/register', [RegisterController::class,'create'])->name('register');
+Route::post('/register', [RegisterController::class,'store'])->name('register.store');
+Route::get('/login', [LoginController::class,'create'])->name('login');
+Route::post('/login', [LoginController::class,'store'])->name('login.store');
+Route::post('/logout', [LoginController::class,'destroy'])->name('logout');
+
+// realtor profile routes
+Route::middleware('auth')->group(function () {
+    Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');  
+});
 
 // Property routes (Non-registered & Registered Users)
 Route::get('/agent/properties', [PropertyController::class, 'index'])->name('properties.index');
