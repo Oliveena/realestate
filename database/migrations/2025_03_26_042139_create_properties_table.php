@@ -11,8 +11,8 @@ class CreatePropertiesTable extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id('propertyId')->primary();
             $table->unsignedBigInteger('realtorId');
-            $table->unsignedBigInteger('buyerId');
-            $table->unsignedInteger('yearBuilt');
+            $table->unsignedBigInteger('buyerId')->nullable();
+            $table->unsignedInteger('yearBuilt')->nullable();
             $table->string('address', 100);
             $table->enum('region', ['Montreal', 'Laval', 'Longueuil', 'Brossard', 'Boucherville']);
             $table->string('postalCode', 10);
