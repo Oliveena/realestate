@@ -11,11 +11,9 @@
                         <div class="card-body d-flex flex-column">
                             <div class="flex-grow-1">
                                 <!-- Display Image if Available -->
-                                @foreach($article->images as $image)
-                                    @if($image->imageType === 'illustration')
-                                        <img src="{{ asset('img/blogs/' . basename($image->imagePath)) }}" class="card-img-top" alt="Article Image" style="height: 200px; object-fit: cover;">
+                                    @if($article -> images -> isIllustration())
+                                        <img src="{{ asset('img/blogs/' . basename($article -> images->imagePath)) }}" class="card-img-top" alt="Article Image" style="height: 200px; object-fit: cover;">
                                     @endif
-                                @endforeach
 
                                 <!-- Article Title and Excerpt -->
                                 <h5 class="card-title">{{ $article->title }}</h5>

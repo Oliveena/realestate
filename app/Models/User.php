@@ -2,55 +2,67 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    // app/Models/User.php
+    protected $fillable = [
+        'firstName',
+        'lastName',
+        'email',
+        'password',
+        'phoneNumber',
+        'city',
+        'role',
+        'avatar', 
+    ];
 
-protected $fillable = [
-    'firstName',     
-    'lastName',        
-    'email',
-    'password',
-    'phoneNumber',
-    'city',
-    'role',
-    'avatar',
-];
-
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Check if the user is a realtor.
+     */
+    public function isRealtor()
+    {
+        return $this->role === 'realtor';
+    }
+
+    /**
+     * A user can have many blog articles (for realtors).
+     */
+    public function blogArticles()
+    {
+        return $this->hasMany(BlogArticle::class);
+    }
+
+    /**
+     * A user has one avatar image.
+     */
+    public function avatar()
+    {
+        return $this->hasOne(Image::class, 'userId');
+    }
+
+    /**
+     * A user can have many comments.
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

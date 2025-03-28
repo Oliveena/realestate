@@ -56,17 +56,18 @@ Route::get('/property/{id}', [PropertyController::class, 'show'])->name('propert
 Route::get('/blogs', [BlogArticleController::class, 'index'])->name('blogs.index');
 Route::get('/blogs/{blogId}', [BlogArticleController::class, 'show'])->name('blogs.show');
 
+
 // Routes for Registered Users and Realtors (Authenticated users)
 Route::middleware('auth')->group(function () {
 
     // Routes for Registered Users
     // Registered users can only CRUD comments
     Route::middleware('can:create,App\Models\Comment')->group(function () {
-        Route::get('/blogs/{article}/comments/create', [CommentController::class, 'create'])->name('comments.create');
-        Route::post('/blogs/{article}/comments', [CommentController::class, 'store'])->name('comments.store');
-        Route::get('/blogs/{article}/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
-        Route::put('/blogs/{article}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
-        Route::delete('/blogs/{article}/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+        Route::get('/blogs/{blogId}/comments/create', [CommentController::class, 'create'])->name('comments.create');
+        Route::post('/blogs/{blogId}/comments', [CommentController::class, 'store'])->name('comments.store');
+        Route::get('/blogs/{blogId}/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+        Route::put('/blogs/{blogId}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+        Route::delete('/blogs/{blogId}/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
     });
 
     // Routes for Realtors
@@ -81,11 +82,13 @@ Route::middleware('auth')->group(function () {
     });
 
     // Realtors can CRUD Blog Articles
-    Route::middleware('can:manage-articles')->group(function () {
+  //  Route::middleware('can:manage-articles')->group(function () {
+    
+        Route::get('/blogs/myblogs', [BlogArticleController::class, 'myblogs'])->name('blogs.myblogs');
         Route::get('/blogs/create', [BlogArticleController::class, 'create'])->name('blogs.create');
         Route::post('/blogs', [BlogArticleController::class, 'store'])->name('blogs.store');
-        Route::get('/blogs/{article}/edit', [BlogArticleController::class, 'edit'])->name('blogs.edit');
-        Route::put('/blogs/{article}', [BlogArticleController::class, 'update'])->name('blogs.update');
-        Route::delete('/blogs/{article}', [BlogArticleController::class, 'destroy'])->name('blogs.destroy');
-    });
+        Route::get('/blogs/{blogId}/edit', [BlogArticleController::class, 'edit'])->name('blogs.edit');
+        Route::put('/blogs/{blogId}', [BlogArticleController::class, 'update'])->name('blogs.update');
+        Route::delete('/blogs/{blogId}', [BlogArticleController::class, 'destroy'])->name('blogs.destroy');
+    //});
 });

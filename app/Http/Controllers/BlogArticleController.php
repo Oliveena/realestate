@@ -21,6 +21,14 @@ class BlogArticleController extends Controller
         return view('blogs.index', compact('articles'));
     }
 
+    public function myblogs()
+    {
+        // Get all blog articles, paginated (3 per page)
+        //$articles = auth()->user()->articles;
+
+        return view('blogs.myblogs', compact('articles'));
+    }
+
     public function create()
     {
         return view('blogs.create');
@@ -69,22 +77,24 @@ class BlogArticleController extends Controller
     }
     
 
-    public function show($blogId)
+public function show($blogId)
 {
-    $article = BlogArticle::find($blogId);
-    
-    if (!$article) {
-        abort(404, 'Article not found');
-    }
-    
-    return view('blogs.show', compact('article'));
+    // Retrieve the BlogArticle by blogId (primary key)
+    $article = BlogArticle::with('comments')->findOrFail($blogId);
+
+    return view('blogs.show', compact('article'));  
 }
 
 
-    public function edit(BlogArticle $article)
-    {
-        return view('blogs.edit', compact('article'));
-    }
+
+public function edit($blogId)
+{
+    // Find the article by its blogId
+    $article = BlogArticle::findOrFail($blogId);
+
+    // Pass the article to the edit view
+    return view('blogs.edit', compact('article'));
+}
 
     public function update(Request $request, BlogArticle $article)
     {
