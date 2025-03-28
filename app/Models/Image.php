@@ -42,7 +42,8 @@ class Image extends Model
     }
 
     public function getImageUrlAttribute()
-{
-    return asset($this->image); 
-}
-}
+    {
+        return asset('img/blogs/' . $this->image);  // Append the stored image filename
+    }
+    
+}    

@@ -28,44 +28,46 @@ class BlogArticleController extends Controller
 
 
     public function store(Request $request)
-{
-    $validated = $request->validate([
-        'title' => 'required|string|max:255',
-        'body' => 'required|string',
-        'illustration' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ensure illustration is an image
-        'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ensure avatar is an image
-    ]);
-
-    // Create the blog article
-    $article = BlogArticle::create($validated);
-
-    // Handle illustration image upload
-    if ($request->hasFile('illustration')) {
-        $filename = $request->file('illustration')->getClientOriginalName();
-        $path = $request->file('illustration')->storeAs('img/blogs', $filename, 'public');
-        
-        // Save the image record
-        $article->images()->create([
-            'imageType' => 'illustration',
-            'image' => 'blogs/' . $filename,  // Store the relative path
+    {
+        // Validate the input data
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'body' => 'required|string',
+            'illustration' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ensure illustration is an image
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ensure avatar is an image
         ]);
+    
+        // Create the blog article
+        $article = BlogArticle::create($validated);
+    
+        // Handle illustration image upload (if exists)
+        if ($request->hasFile('illustration')) {
+            $filename = $request->file('illustration')->getClientOriginalName();
+            $path = $request->file('illustration')->storeAs('img/blogs', $filename, 'public');
+            
+            // Save the image record and associate it with the blog article
+            $article->images()->create([
+                'imageType' => 'illustration',  // Define the type of image
+                'image' => 'blogs/' . $filename,  // Store the relative path to the image
+            ]);
+        }
+    
+        // Handle avatar image upload (if exists)
+        if ($request->hasFile('avatar')) {
+            $filename = $request->file('avatar')->getClientOriginalName();
+            $path = $request->file('avatar')->storeAs('img/avatar', $filename, 'public');
+            
+            // Save the avatar record and associate it with the blog article
+            $article->images()->create([
+                'imageType' => 'avatar',  // Define the type of image
+                'image' => 'avatar/' . $filename,  // Store the relative path to the image
+            ]);
+        }
+    
+        // Redirect to the list of articles after saving
+        return redirect()->route('blogs.index');
     }
-
-    // Handle avatar image upload
-    if ($request->hasFile('avatar')) {
-        $filename = $request->file('avatar')->getClientOriginalName();
-        $path = $request->file('avatar')->storeAs('img/avatar', $filename, 'public');
-        
-        // Save the image record
-        $article->images()->create([
-            'imageType' => 'avatar',
-            'image' => 'avatar/' . $filename,  // Store the relative path
-        ]);
-    }
-
-    return redirect()->route('blogs.index');
-}
-
+    
 
     public function show($blogId)
 {

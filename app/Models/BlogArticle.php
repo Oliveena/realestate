@@ -29,6 +29,6 @@ class BlogArticle extends Model
 
     public function images()
     {
-        return $this->hasOne(Image::class, 'theblogId'); // FK
+        return $this->hasMany(Image::class, 'theblogId'); // FK
     }
 }
