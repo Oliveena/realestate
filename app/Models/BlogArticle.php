@@ -16,7 +16,7 @@ class BlogArticle extends Model
         'title',
         'body',
         'blogAuthorId', // FK
-        'illustration', // TODO: make not null
+        'illustration',
     ];
 
     public $timestamps = true;
@@ -29,6 +29,14 @@ class BlogArticle extends Model
 
     public function images()
     {
-        return $this->hasMany(Image::class, 'theblogId'); // FK
+        return $this->hasOne(Image::class, 'theblogId'); // FK
     }
+
+    // Relationship: A blog article can have many comments
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'articleId');  // FK
+    }
+
+
 }
