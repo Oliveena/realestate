@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id('messageId')->primary();
-            $table->unsignedBigInteger('senderId');
+            $table->unsignedBigInteger('senderId')->nullable(); // Add nullable constraint for senderId
             $table->unsignedBigInteger('receiverId');
-            $table->unsignedBigInteger('propertyId'); // Add propertyId column
-            $table->string('messTitle', 100);
+            $table->unsignedBigInteger('propertyId'); 
+            $table->string('senderName', 100);
+            $table->string('senderEmail', 100);
+            $table->string('senderPhone', 10);
             $table->string('messBody', 500);
-            $table->string('attachedFiles', 100)->nullable();
     
             // Foreign key constraints
             $table->foreign('senderId')->references('id')->on('users')->onDelete('cascade');

@@ -9,6 +9,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ForgotPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use Illuminate\Support\Facades\Response;
@@ -39,18 +41,31 @@ Route::get('/login', [LoginController::class,'create'])->name('login');
 Route::post('/login', [LoginController::class,'store'])->name('login.store');
 Route::post('/logout', [LoginController::class,'destroy'])->name('logout');
 
+// Password Reset Routes
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');
+
+// Property routes (Non-registered & Registered Users)
+Route::get('/property', [PropertyController::class, 'index'])->name('property.index');
+Route::get('/property/search', [PropertyController::class, 'search'])->name('property.search');
+Route::get('/property/{id}', [PropertyController::class, 'show'])->name('property.show');
+
 // Realtor profile routes
 Route::middleware('auth')->group(function () {
     // Profile routes
     Route::get('profile', [ProfileController::class, 'showProfile'])->name('profile.show');
     Route::get('profile/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
     Route::put('profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+
+    // Message routes
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
+    Route::put('/messages/{message}', [MessageController::class, 'update'])->name('messages.update');
+    Route::delete('/messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
 });
 
-// Property routes (Non-registered & Registered Users)
-Route::get('/property', [PropertyController::class, 'index'])->name('property.index');
-Route::get('/property/search', [PropertyController::class, 'search'])->name('property.search');
-Route::get('/property/{id}', [PropertyController::class, 'show'])->name('property.show');
 
 // Blog Article routes (Non-registered & Registered Users)
 Route::get('/blogs', [BlogArticleController::class, 'index'])->name('blogs.index');

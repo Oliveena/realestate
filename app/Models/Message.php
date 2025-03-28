@@ -10,18 +10,21 @@ class Message extends Model
     use HasFactory;
 
     protected $table = 'messages';
+    protected $primaryKey = 'messageId';
 
     protected $fillable = [
         'senderId', 
-        'receiverId', 
-        'messTitle', 
-        'messBody', 
-        'messageTime', 
-        'attachedFiles'
+        'receiverId',
+        'propertyId',
+        'senderName',
+        'senderEmail',
+        'senderPhone',
+        'messBody'
     ];
-
-    const CREATED_AT = 'messageTime'; 
-    const UPDATED_AT = null; 
+    
+    // Remove these lines that don't match our schema
+    // const CREATED_AT = 'messageTime'; 
+    // const UPDATED_AT = null;
 
 
     // A message has a sender (from users table)
@@ -34,5 +37,11 @@ class Message extends Model
     public function receiver()
     {
         return $this->belongsTo(User::class, 'receiverId');
+    }
+
+    // A message belongs to a property
+    public function property()
+    {
+        return $this->belongsTo(Property::class, 'propertyId');
     }
 }

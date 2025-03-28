@@ -20,7 +20,7 @@
             </div>
         @endif
         <div class="text-center mt-3">
-            <a href="#" class="text-danger text-end d-block mb-3">Forgot your password?</a>
+            <a href="{{ route('password.request') }}" class="text-danger text-end d-block mb-3">Forgot your password?</a>
         </div>
         <button type="submit" class="btn btn-danger btn-submit">Submit</button>
     </form>
