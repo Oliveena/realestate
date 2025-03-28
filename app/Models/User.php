@@ -55,7 +55,7 @@ class User extends Authenticatable
      */
     public function avatar()
     {
-        return $this->hasOne(Image::class, 'userId');
+        return $this->hasOne(Image::class, 'posterId');
     }
 
     /**

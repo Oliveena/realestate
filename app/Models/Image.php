@@ -28,7 +28,7 @@ class Image extends Model
     // relationship with User (for avatar)
     public function user()
     {
-        return $this->belongsTo(User::class, 'userId');  // FK
+        return $this->belongsTo(User::class, 'posterId');  // Changed from userId to posterId
     }
 
     public function isIllustration()
