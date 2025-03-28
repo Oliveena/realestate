@@ -39,7 +39,7 @@ Route::get('/login', [LoginController::class,'create'])->name('login');
 Route::post('/login', [LoginController::class,'store'])->name('login.store');
 Route::post('/logout', [LoginController::class,'destroy'])->name('logout');
 
-// realtor profile routes
+// Realtor profile routes
 Route::middleware('auth')->group(function () {
     // Profile routes
     Route::get('profile', [ProfileController::class, 'viewProfile'])->name('profile.view');
