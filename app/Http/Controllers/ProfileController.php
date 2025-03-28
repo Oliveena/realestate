@@ -11,34 +11,26 @@ class ProfileController extends Controller
 {
     public function __construct()
     {
-        // Apply middleware to ensure user is authenticated
-        $this->middleware('auth');
+        // Ensure only authenticated users can access this controller
+        $this->middleware('auth'); // This ensures the user is logged in
     }
 
     public function showProfile()
     {
-        // Get the currently authenticated user
-        $user = Auth::user();
-
-        // Return the profile view with the user data
+        $user = Auth::user(); // Get the currently authenticated user
         return view('profile.show', compact('user'));
     }
 
     public function editProfile()
     {
-        // Get the currently authenticated user
-        $user = Auth::user();
-
-        // Return the profile edit view with the user data
+        $user = Auth::user(); // Get the currently authenticated user
         return view('profile.edit', compact('user'));
     }
 
     public function updateProfile(Request $request)
     {
-        // Get the currently authenticated user
-        $user = Auth::user();
-    
-        // Validate and update the user's profile information
+        $user = Auth::user(); // Get the currently authenticated user
+
         $validatedData = $request->validate([
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
@@ -47,17 +39,19 @@ class ProfileController extends Controller
             'city' => 'nullable|string|max:255',
             'avatar' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
-    
-        // Handle avatar upload if a new file is provided
+
         if ($request->hasFile('avatar')) {
             $path = $request->file('avatar')->store('avatars', 'public');
             $validatedData['avatar'] = $path;
         }
-    
-        // Update user data
+
+        // Update the user's profile
         $user->update($validatedData);
-    
-        // Redirect back with success message
-        return redirect()->route('profile.view')->with('success', 'Profile updated successfully');
+
+        return redirect()->route('profile.show')->with('success', 'Profile updated successfully!');
     }
 }
+
+
+    
+
