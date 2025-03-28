@@ -21,10 +21,10 @@
         </p>
 
         <!-- Article Image -->
-        @if($article->images->first() && $article->images->first()->isIllustration())
-            <img src="{{ $article->images->first()->getImageUrlAttribute() }}" class="img-fluid" alt="Article Image">
+        @if($article->images->isIllustration())
+        <img src="{{ asset('img/blogs/' . basename($article->images->imagePath)) }}" class="card-img-top" alt="Article Image" style="height: 450px; object-fit: cover;"> 
         @else
-            <img src="{{ asset('images/default-image.jpg') }}" class="img-fluid" alt="Default Image">
+            <img src="{{ asset('images/defaultimage.jpg') }}" class="img-fluid" alt="Default Image">
         @endif
 
         <!-- Comments Section -->
