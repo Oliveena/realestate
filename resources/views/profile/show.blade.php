@@ -1,10 +1,10 @@
-<x-app-layout>
+<x-app-layout title=" View Realtor Profile">
     <div class="container py-5">
         <div class="row">
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="card-title mb-4">Account Information</h2>
+                        <h2 class="card-title mb-4">Realtor Profile</h2>
                         <div class="row mb-4">
                             <div class="col-md-2 text-center">
                                 <img src="{{ $user->avatar ? asset('storage/' . $user->avatar) : 'img/avatar-placeholder.jpg' }}" alt="Profile Picture" class="rounded-circle" width="100" height="100">

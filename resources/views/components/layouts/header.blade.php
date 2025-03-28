@@ -28,7 +28,7 @@
                                 @elseif(Auth::user()->role === 'Buyer')
                                     <li><a class="dropdown-item" href="#">My Favorite Properties</a></li>
                                 @endif
-                                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profile.show') }}">My Profile</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
