@@ -115,6 +115,8 @@ public function edit($blogId)
 
     // Redirect back with a success message
     return redirect()->route('blogs.show', $article->blogId)->with('success', 'Article updated successfully');
+
+
 }
 
 }
