@@ -1,7 +1,5 @@
 <?php
 
-// TODO: add FKs to 'images' table
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -24,22 +22,27 @@ class Image extends Model
     // relationship with BlogArticle
     public function blogArticle()
     {
-        return $this->belongsTo(BlogArticle::class, 'theblogId');  //FK
+        return $this->belongsTo(BlogArticle::class, 'theblogId');  // FK
     }
 
     // relationship with User (for avatar)
     public function user()
     {
-        return $this->belongsTo(User::class, 'userId');  //FK
+        return $this->belongsTo(User::class, 'userId');  // FK
     }
 
     public function isIllustration()
     {
-        return $this->imageType === 'illustration';  //FK
+        return $this->imageType === 'illustration';  // FK
+    }
+
+    public function isAvatar()
+    {
+        return $this->imageType === 'avatar';  // FK
     }
 
     public function getImageUrlAttribute()
-    {
-        return asset('storage/' . $this->image);  
-    }
+{
+    return asset($this->image); 
+}
 }

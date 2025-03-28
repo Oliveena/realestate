@@ -28,24 +28,44 @@ class BlogArticleController extends Controller
 
 
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'body' => 'required|string',
-            'illustration' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ensure illustration is an image
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'body' => 'required|string',
+        'illustration' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ensure illustration is an image
+        'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ensure avatar is an image
+    ]);
+
+    // Create the blog article
+    $article = BlogArticle::create($validated);
+
+    // Handle illustration image upload
+    if ($request->hasFile('illustration')) {
+        $filename = $request->file('illustration')->getClientOriginalName();
+        $path = $request->file('illustration')->storeAs('img/blogs', $filename, 'public');
+        
+        // Save the image record
+        $article->images()->create([
+            'imageType' => 'illustration',
+            'image' => 'blogs/' . $filename,  // Store the relative path
         ]);
-
-        $article = BlogArticle::create($validated);
-
-        if ($request->hasFile('illustration')) {
-            $path = $request->file('illustration')->store('illustrations', 'public');
-            $article->illustration = $path;
-            $article->save();
-        }
-
-        return redirect()->route('blogs.index');
     }
-    // app/Http/Controllers/BlogArticleController.php
+
+    // Handle avatar image upload
+    if ($request->hasFile('avatar')) {
+        $filename = $request->file('avatar')->getClientOriginalName();
+        $path = $request->file('avatar')->storeAs('img/avatar', $filename, 'public');
+        
+        // Save the image record
+        $article->images()->create([
+            'imageType' => 'avatar',
+            'image' => 'avatar/' . $filename,  // Store the relative path
+        ]);
+    }
+
+    return redirect()->route('blogs.index');
+}
+
 
     public function show($blogId)
 {
