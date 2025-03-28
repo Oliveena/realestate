@@ -96,15 +96,25 @@ public function edit($blogId)
     return view('blogs.edit', compact('article'));
 }
 
-    public function update(Request $request, BlogArticle $article)
-    {
-        $article->update($request->all());
-        return redirect()->route('blogs.index');
-    }
+    public function update(Request $request, $blogId)
+{
+    // Validate incoming data
+    $validatedData = $request->validate([
+        'title' => 'required|string|max:255',
+        'body' => 'required|string',
+    ]);
 
-    public function destroy(BlogArticle $article)
-    {
-        $article->delete();
-        return redirect()->route('blogs.index');
-    }
+    // Find the article by its ID
+    $article = BlogArticle::findOrFail($blogId);
+
+    // Update the article
+    $article->update([
+        'title' => $validatedData['title'],
+        'body' => $validatedData['body'],
+    ]);
+
+    // Redirect back with a success message
+    return redirect()->route('blogs.show', $article->blogId)->with('success', 'Article updated successfully');
+}
+
 }
