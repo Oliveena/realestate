@@ -1,4 +1,4 @@
-<x-app-layout title="Edit Realtor Profile">
+<x-app-layout title="Edit Profile">
     <div class="container py-5">
         <div class="row">
             <div class="col-md-9">

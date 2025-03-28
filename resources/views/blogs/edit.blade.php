@@ -3,7 +3,7 @@
 
     <div class="container mt-4">
         <h2>Edit Blog Article</h2>
-        <form action="{{ route('articles.update', $article->blogId) }}" method="POST">
+        <form action="{{ route('blogs.update', $article->blogId) }}" method="POST">
             @csrf
             @method('PUT')  
 
