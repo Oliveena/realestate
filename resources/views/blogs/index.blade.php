@@ -31,7 +31,7 @@
                                         <img src="{{ asset('images/default-avatar.jpg') }}" class="rounded-circle" style="width: 30px; height: 30px; margin-right: 10px;" alt="Default Avatar">
                                     @endif --}}
                                     <!-- Author Info -->
-                                    {{ $article->author->name ?? 'Unknown Author' }}
+                                    {{ $article->author->firstName }} {{ $article->author->lastName }}
                                 </p>                                
                                 
                             </div>

@@ -75,15 +75,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label for="yearBuilt" class="form-label">Year Built</label>
-                                    <select class="form-select" id="yearBuilt">
-                                        <option value="" selected disabled>Select Year</option>
-                                        <option value="2024">2024</option>
-                                        <option value="2023">2023</option>
-                                        <option value="2022">2022</option>
-                                        <option value="2021">2021</option>
-                                        <option value="2020">2020</option>
-                                        <option value="older">Before 2020</option>
-                                    </select>
+                                    <input type="number" class="form-control" id="yearBuilt" placeholder="Enter year built">
                                 </div>
                             </div>
 
@@ -98,11 +90,21 @@
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="bedrooms" class="form-label">Bedrooms</label>
-                                    <input type="number" class="form-control" id="bedrooms" placeholder="Number of bedrooms">
+                                    <select class="form-select" id="bedrooms" required>
+                                        <option value="" selected disabled>Select bedrooms</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="bathrooms" class="form-label">Bathrooms</label>
-                                    <input type="number" class="form-control" id="bathrooms" placeholder="Number of bathrooms">
+                                    <select class="form-select" id="bathrooms" required>
+                                        <option value="" selected disabled>Select bathrooms</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -132,66 +134,6 @@
                                 </div>
                             </div>
 
-                            <!-- Property Features -->
-                            <div class="row mb-4">
-                                <div class="col-12 mb-2">
-                                    <label class="form-label">Property Features</label>
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="airConditioning">
-                                        <label class="form-check-label" for="airConditioning">Air Conditioning</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="swimmingPool">
-                                        <label class="form-check-label" for="swimmingPool">Swimming Pool</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="fireplace">
-                                        <label class="form-check-label" for="fireplace">Fireplace</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="garage">
-                                        <label class="form-check-label" for="garage">Garage</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="basement">
-                                        <label class="form-check-label" for="basement">Finished Basement</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="balcony">
-                                        <label class="form-check-label" for="balcony">Balcony/Terrace</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="securitySystem">
-                                        <label class="form-check-label" for="securitySystem">Security System</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="renovated">
-                                        <label class="form-check-label" for="renovated">Recently Renovated</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="energyEfficient">
-                                        <label class="form-check-label" for="energyEfficient">Energy Efficient</label>
-                                    </div>
-                                </div>
-                            </div>
 
                             <!-- Property Description -->
                             <div class="row mb-4">
@@ -204,14 +146,14 @@
                             <!-- Property Images -->
                             <div class="row mb-4">
                                 <div class="col-12 mb-3">
-                                    <label class="form-label">Property Images</label>
+                                    <label class="form-label">Property Image</label>
                                     <div class="d-flex align-items-center justify-content-center border rounded p-4" style="min-height: 200px;">
                                         <div class="text-center">
                                             <i class="fas fa-cloud-upload-alt fa-3x mb-3 text-muted"></i>
-                                            <p class="mb-2">Drag &amp; drop your images here</p>
+                                            <p class="mb-2">Drag &amp; drop your image here</p>
                                             <p class="text-muted small">or</p>
-                                            <button type="button" class="btn btn-outline-secondary">Browse Files</button>
-                                            <p class="text-muted small mt-2">Max 10 images, JPEG or PNG (max 5MB each)</p>
+                                            <button type="button" class="btn btn-outline-secondary">Browse File</button>
+                                            <p class="text-muted small mt-2">JPEG or PNG (max 5MB)</p>
                                         </div>
                                     </div>
                                 </div>
@@ -222,7 +164,7 @@
                                 <div class="col-12">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="published">
-                                        <label class="form-check-label" for="published">Publish this listing immediately</label>
+                                        <label class="form-check-label" for="published">Publish this list</label>
                                     </div>
                                 </div>
                             </div>
