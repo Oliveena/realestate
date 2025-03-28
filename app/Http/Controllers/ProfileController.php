@@ -15,13 +15,13 @@ class ProfileController extends Controller
         $this->middleware('auth');
     }
 
-    public function viewProfile()
+    public function showProfile()
     {
         // Get the currently authenticated user
         $user = Auth::user();
 
         // Return the profile view with the user data
-        return view('profile.view', compact('user'));
+        return view('profile.show', compact('user'));
     }
 
     public function editProfile()
@@ -37,9 +37,9 @@ class ProfileController extends Controller
     {
         // Get the currently authenticated user
         $user = Auth::user();
-
+    
         // Validate and update the user's profile information
-        $request->validate([
+        $validatedData = $request->validate([
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
@@ -47,16 +47,16 @@ class ProfileController extends Controller
             'city' => 'nullable|string|max:255',
             'avatar' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
-
+    
         // Handle avatar upload if a new file is provided
         if ($request->hasFile('avatar')) {
             $path = $request->file('avatar')->store('avatars', 'public');
-            $user->avatar = $path;
+            $validatedData['avatar'] = $path;
         }
-
+    
         // Update user data
-        $user->update($request->only(['firstName', 'lastName', 'email', 'phoneNumber', 'city', 'avatar']));
-
+        $user->update($validatedData);
+    
         // Redirect back with success message
         return redirect()->route('profile.view')->with('success', 'Profile updated successfully');
     }

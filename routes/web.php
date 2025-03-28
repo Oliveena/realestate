@@ -42,7 +42,7 @@ Route::post('/logout', [LoginController::class,'destroy'])->name('logout');
 // Realtor profile routes
 Route::middleware('auth')->group(function () {
     // Profile routes
-    Route::get('profile', [ProfileController::class, 'viewProfile'])->name('profile.view');
+    Route::get('profile', [ProfileController::class, 'showProfile'])->name('profile.show');
     Route::get('profile/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
     Route::put('profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
 });
